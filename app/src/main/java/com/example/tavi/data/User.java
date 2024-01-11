@@ -15,7 +15,6 @@ public class User {
     private String password;
     private String about;
     private byte[] picture;
-    private LocalDate birthdayDate;
     private String gender;
 
     public int getId() {
@@ -72,14 +71,6 @@ public class User {
 
     public void setPicture(byte[] picture) {
         this.picture = picture;
-    }
-
-    public LocalDate getBirthdayDate() {
-        return birthdayDate;
-    }
-
-    public void setBirthdayDate(LocalDate birthdayDate) {
-        this.birthdayDate = birthdayDate;
     }
 
     public String getGender() {

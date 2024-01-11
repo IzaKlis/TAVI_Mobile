@@ -9,6 +9,5 @@ public class Post {
     private long id;
     private String title;
     private String body;
-    private LocalDateTime dateCreated;
 
 }
