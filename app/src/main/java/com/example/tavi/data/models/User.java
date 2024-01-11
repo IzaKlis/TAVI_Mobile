@@ -1,4 +1,4 @@
-package com.example.tavi.data;
+package com.example.tavi.data.models;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
