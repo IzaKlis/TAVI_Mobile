@@ -1,4 +1,4 @@
-package com.example.tavi.data;
+package com.example.tavi.data.repositories;
 
 import android.app.Application;
 
@@ -6,8 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
-import com.example.tavi.data.User;
-import com.example.tavi.data.UserRepository;
+import com.example.tavi.data.models.User;
 
 import java.util.List;
 
@@ -18,7 +17,7 @@ public class UserViewModel extends AndroidViewModel {
     public UserViewModel(@NonNull Application application) {
         super(application);
         userRepository = new UserRepository(application);
-        users = userRepository.findAllUsers();
+        users = userRepository.getAllUsers();
     }
 
     public LiveData<List<User>> findAll() {
@@ -26,14 +25,18 @@ public class UserViewModel extends AndroidViewModel {
     }
 
     public void insert(User user) {
-        userRepository.insert(user);
+        userRepository.insertUser(user);
     }
 
     public void update(User user) {
-        userRepository.update(user);
+        userRepository.updateUser(user);
     }
 
     public void delete(User user) {
-        userRepository.delete(user);
+        userRepository.deleteUser(user);
+    }
+
+    public LiveData<User> getUserById(int userId) {
+        return userRepository.getUserById(userId);
     }
 }

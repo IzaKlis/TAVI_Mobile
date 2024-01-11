@@ -1,4 +1,4 @@
-package com.example.tavi.data;
+package com.example.tavi.data.database.dao;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
@@ -8,7 +8,7 @@ import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
-import com.example.tavi.data.User;
+import com.example.tavi.data.models.User;
 
 import java.util.List;
 
@@ -22,9 +22,9 @@ public interface UserDao {
 
     @Delete
     void delete(User user);
-    @Query("SELECT * FROM user ORDER BY id")
+    @Query("SELECT * FROM users ORDER BY id")
     LiveData<List<User>> findAll();
 
-    @Query("SELECT * FROM user WHERE id = :userId")
-    User getUserById(int userId);
+    @Query("SELECT * FROM users WHERE id = :userId LIMIT 1")
+    LiveData<User> getUserById(int userId);
 }
