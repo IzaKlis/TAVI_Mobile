@@ -26,6 +26,6 @@ public interface UserRelationDao {
     @Query("SELECT * FROM users_relations WHERE id_user_from = :userId OR id_user_to = :userId")
     LiveData<List<UserRelation>> findAllRelationsByUserId(int userId);
     @Query("SELECT * FROM users_relations WHERE id_user_to = :userId")
-    LiveData<List<UserRelation>> getAllUserInvites(Long userId);
+    LiveData<List<UserRelation>> getAllUserInvites(int userId);
 
 }

@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey;
 
 import java.time.LocalDate;
 
-@Entity(tableName = "User")
+@Entity(tableName = "Users")
 public class User {
     @PrimaryKey(autoGenerate = true)
     private int id;

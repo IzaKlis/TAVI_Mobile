@@ -6,7 +6,7 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-import com.example.tavi.data.database.dao.PostPictureDao;
+import com.example.tavi.data.database.dao.PictureDao;
 import com.example.tavi.data.database.dao.UserDao;
 import com.example.tavi.data.database.dao.PostDao;
 import com.example.tavi.data.database.dao.CommentDao;
@@ -38,7 +38,7 @@ public abstract class AppDatabase extends RoomDatabase {
 
     public abstract ReactionDao reactionDao();
 
-    public abstract PostPictureDao postPictureDao();
+    public abstract PictureDao pictureDao();
 
     public static final ExecutorService databaseWriteExecutor = Executors.newSingleThreadExecutor();
 
@@ -50,4 +50,5 @@ public abstract class AppDatabase extends RoomDatabase {
         }
         return instance;
     }
+
 }

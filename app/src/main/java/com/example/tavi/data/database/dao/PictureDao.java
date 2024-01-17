@@ -9,7 +9,7 @@ import androidx.room.Update;
 import com.example.tavi.data.models.Picture;
 
 @Dao
-public interface PostPictureDao {
+public interface PictureDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(Picture picture);
     @Update

@@ -32,7 +32,7 @@ public class UserRelationRepository {
     public LiveData<List<UserRelation>> findAllRelationsByUserId(int userId) {
         return userRelationDao.findAllRelationsByUserId(userId);
     }
-    public LiveData<List<UserRelation>> getAllUserInvites(Long userId) {
+    public LiveData<List<UserRelation>> getAllUserInvites(int userId) {
         return userRelationDao.getAllUserInvites(userId);
     }
 }

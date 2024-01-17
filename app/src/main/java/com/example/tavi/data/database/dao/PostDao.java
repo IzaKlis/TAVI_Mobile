@@ -1,6 +1,5 @@
 package com.example.tavi.data.database.dao;
 
-import androidx.annotation.Nullable;
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;

@@ -12,7 +12,6 @@ public class Reaction {
     private int id;
     @ColumnInfo(name = "type")
     private String type;
-
     @ColumnInfo(name = "id_post")
     private int postId;
     @ColumnInfo(name = "id_user")
