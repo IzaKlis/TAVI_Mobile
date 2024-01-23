@@ -3,6 +3,7 @@
     <color name="colorBlack">#FF000000</color>
     <color name="colorWhite">#FFFFFFFF</color>
     <color name="colorPrimaryDark">#3262C4</color>
-    <color name="colorRed">#C11515</color>
+    <color name="colorLavender">#b6a3e0</color>
+    <color name="colorBlue">#9baff9</color>
     <color name="colorBeige">#99FFFFFF</color>
 </resources>

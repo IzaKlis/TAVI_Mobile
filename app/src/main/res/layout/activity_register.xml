@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/vista"
+    android:background="@drawable/travel"
     tools:context="com.example.tavi.RegisterActivity">
 
     <TextView
@@ -21,43 +21,18 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.22000003" />
 
-    <EditText
-        android:id="@+id/inputUsername"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="50dp"
-        android:background="@drawable/input_bg"
-        android:drawableLeft="@drawable/ic_person"
-        android:drawablePadding="10dp"
-        android:ems="10"
-        android:hint="ℕ𝔸ℤ𝕎𝔸 𝕌Ż𝕐𝕋𝕂𝕆𝕎ℕ𝕀𝕂𝔸"
-        android:inputType="text"
-        android:paddingLeft="20dp"
-        android:paddingTop="10dp"
-        android:paddingRight="10dp"
-        android:paddingBottom="10dp"
-        android:textColor="@color/colorBlack"
-        android:textColorHint="@color/colorBlack"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.32999998" />
 
     <EditText
         android:id="@+id/inputEmail"
-        android:layout_width="0dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="60dp"
         android:background="@drawable/input_bg"
         android:drawableLeft="@drawable/ic_email"
         android:drawablePadding="10dp"
         android:ems="10"
         android:hint="𝔼-𝕄𝔸𝕀𝕃"
-        android:inputType="text"
+        android:inputType="textEmailAddress"
         android:paddingLeft="20dp"
         android:paddingTop="10dp"
         android:paddingRight="10dp"
@@ -65,10 +40,9 @@
         android:textColor="@color/colorBlack"
         android:textColorHint="@color/colorBlack"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/inputUsername"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/inputUsername"
-        app:layout_constraintTop_toBottomOf="@+id/inputUsername" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logo" />
 
     <EditText
         android:id="@+id/inputPassword"
@@ -80,7 +54,7 @@
         android:drawablePadding="10dp"
         android:ems="10"
         android:hint="ℍ𝔸𝕊Ł𝕆"
-        android:inputType="text"
+        android:inputType="textPassword"
         android:paddingLeft="20dp"
         android:paddingTop="10dp"
         android:paddingRight="10dp"
@@ -102,7 +76,7 @@
         android:drawablePadding="10dp"
         android:ems="10"
         android:hint="ℙ𝕆𝕋𝕎𝕀𝔼ℝ𝔻Ź ℍ𝔸𝕊Ł𝕆"
-        android:inputType="text"
+        android:inputType="textPassword"
         android:paddingLeft="20dp"
         android:paddingTop="10dp"
         android:paddingRight="10dp"
