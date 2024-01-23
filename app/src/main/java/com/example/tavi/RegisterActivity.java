@@ -79,9 +79,9 @@ public class RegisterActivity extends AppCompatActivity {
                     {
                         mLoadingBar.dismiss();
                         Toast.makeText(RegisterActivity.this,"Rejestracja git.",Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(RegisterActivity.this, SetupActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_NEW_TASK);
-                        startActivity(intent);
+//                        Intent intent = new Intent(RegisterActivity.this, SetupActivity.class);
+//                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_NEW_TASK);
+//                        startActivity(intent);
                         finish();
                     } else{
                         mLoadingBar.dismiss();

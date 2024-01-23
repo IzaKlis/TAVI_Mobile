@@ -82,7 +82,7 @@ public class LoginActivity extends AppCompatActivity {
                         //Intent intent = new Intent(LoginActivity.this, SetupActivity.class);
                         //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_NEW_TASK);
                         //startActivity(intent);
-                        finish();
+                        //finish();
                     }else{
                         mLoadingBar.dismiss();
                         Toast.makeText(LoginActivity.this,"Logowanie nie git.",Toast.LENGTH_SHORT).show();
