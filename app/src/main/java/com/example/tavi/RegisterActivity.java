@@ -22,7 +22,7 @@ public class RegisterActivity extends AppCompatActivity {
     TextView alreadyHaveAnAccount;
     private EditText inputPassword, inputEmail, inputConfirmPassword;
     Button btnRegister;
-    FirebaseAuth mAuth;
+    //FirebaseAuth mAuth;
     ProgressDialog mLoadingBar;
 
     @Override
@@ -35,7 +35,7 @@ public class RegisterActivity extends AppCompatActivity {
         inputConfirmPassword=findViewById(R.id.inputConfirmPassword);
         alreadyHaveAnAccount=findViewById(R.id.alreadyHaveAccount);
 
-        mAuth = FirebaseAuth.getInstance();
+        //mAuth = FirebaseAuth.getInstance();
         mLoadingBar = new ProgressDialog(this);
 
         btnRegister=findViewById(R.id.btnRegister);
@@ -72,23 +72,23 @@ public class RegisterActivity extends AppCompatActivity {
             mLoadingBar.setMessage("Proszę czekać, trwa rejestracja użytkownika.");
             mLoadingBar.setCanceledOnTouchOutside(false);
             mLoadingBar.show();
-            mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-                    if(task.isSuccessful())
-                    {
-                        mLoadingBar.dismiss();
-                        Toast.makeText(RegisterActivity.this,"Rejestracja git.",Toast.LENGTH_SHORT).show();
+//            mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+//                @Override
+//                public void onComplete(@NonNull Task<AuthResult> task) {
+//                    if(task.isSuccessful())
+//                    {
+//                        mLoadingBar.dismiss();
+//                        Toast.makeText(RegisterActivity.this,"Rejestracja git.",Toast.LENGTH_SHORT).show();
 //                        Intent intent = new Intent(RegisterActivity.this, SetupActivity.class);
 //                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_NEW_TASK);
 //                        startActivity(intent);
-                        finish();
-                    } else{
-                        mLoadingBar.dismiss();
-                        Toast.makeText(RegisterActivity.this,"Rejestracja nie git.",Toast.LENGTH_SHORT).show();
-                    }
-                }
-            });
+//                        finish();
+//                    } else{
+//                        mLoadingBar.dismiss();
+//                        Toast.makeText(RegisterActivity.this,"Rejestracja nie git.",Toast.LENGTH_SHORT).show();
+//                    }
+//                }
+//            });
         }
     }
 

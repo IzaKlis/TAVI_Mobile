@@ -22,7 +22,7 @@ public class LoginActivity extends AppCompatActivity {
     TextView createNewAccount, forgotPassword;
     EditText inputEmail,inputPassword;
     Button btnLogin;
-    FirebaseAuth mAuth;
+    //FirebaseAuth mAuth;
     ProgressDialog mLoadingBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +33,7 @@ public class LoginActivity extends AppCompatActivity {
         inputPassword = findViewById(R.id.inputPassword);
         btnLogin = findViewById(R.id.btnLogin);
         createNewAccount = findViewById(R.id.textViewSignUp);
-        mAuth = FirebaseAuth.getInstance();
+        //mAuth = FirebaseAuth.getInstance();
         mLoadingBar = new ProgressDialog(this);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -53,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Przejście do nowej aktywności
-                //startActivity(new Intent(LoginActivity.this, SetupActivity.class));
+                startActivity(new Intent(LoginActivity.this, SetupActivity.class));
             }
         });
 
@@ -73,22 +73,22 @@ public class LoginActivity extends AppCompatActivity {
             mLoadingBar.setMessage("Proszę czekać, trwa logowanie użytkownika.");
             mLoadingBar.setCanceledOnTouchOutside(false);
             mLoadingBar.show();
-            mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-                    if(task.isSuccessful()){
-                        mLoadingBar.dismiss();
-                        Toast.makeText(LoginActivity.this, "Logowanie git.", Toast.LENGTH_SHORT).show();
-                        //Intent intent = new Intent(LoginActivity.this, SetupActivity.class);
-                        //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_NEW_TASK);
-                        //startActivity(intent);
-                        //finish();
-                    }else{
-                        mLoadingBar.dismiss();
-                        Toast.makeText(LoginActivity.this,"Logowanie nie git.",Toast.LENGTH_SHORT).show();
-                    }
-                }
-            });
+            //mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+//                @Override
+//                public void onComplete(@NonNull Task<AuthResult> task) {
+//                    if(task.isSuccessful()){
+//                        mLoadingBar.dismiss();
+//                        Toast.makeText(LoginActivity.this, "Logowanie git.", Toast.LENGTH_SHORT).show();
+//                        Intent intent = new Intent(LoginActivity.this, SetupActivity.class);
+//                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_NEW_TASK);
+//                        startActivity(intent);
+//                        finish();
+//                    }else{
+//                        mLoadingBar.dismiss();
+//                        Toast.makeText(LoginActivity.this,"Logowanie nie git.",Toast.LENGTH_SHORT).show();
+//                    }
+//                }
+//            });
 
         }
     }
