@@ -61,10 +61,16 @@ public class SetupActivity extends AppCompatActivity {
 
         if(username.isEmpty() || username.length()<3){
             showError(inputUsername,"Imię jest za krótkie");
-        }else if(city.isEmpty() || city.length()<3){
-            showError(inputCity,"Nazwa miasta jest za krótka");
+        }else if(!Character.isUpperCase(username.charAt(0))){
+            showError(inputUsername,"Imię musi zaczynać się z wielkiej litery");
+        }else if(city.isEmpty() || city.length()<3) {
+            showError(inputCity, "Nazwa miasta jest za krótka");
+        }else if(!Character.isUpperCase(city.charAt(0))){
+                showError(inputCity,"Nazwa miasta musi zaczynać się z wielkiej litery");
         }else if(country.isEmpty() || country.length()<3){
             showError(inputCountry,"Nazwa kraju jest za krótka");
+        }else if(!Character.isUpperCase(country.charAt(0))){
+            showError(inputCountry,"Nazwa kraju musi zaczynać się z wielkiej litery");
         }else if(hobby.isEmpty() || hobby.length()<3){
             showError(inputHobby,"Zainteresowania są za krótkie");
         }else if(imageUri==null){
