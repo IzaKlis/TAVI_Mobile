@@ -11,6 +11,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TAVI">
         <activity
+            android:name=".ChatActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FindFriendActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="false" />
         <activity
