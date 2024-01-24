@@ -36,13 +36,10 @@ public class SetupActivity extends AppCompatActivity {
         mLoadingBar = new ProgressDialog(this);
 
 
-        profileImageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-                intent.setType("image/*");
-                startActivityForResult(intent, REQUEST_CODE);
-            }
+        profileImageView.setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+            intent.setType("image/*");
+            startActivityForResult(intent, REQUEST_CODE);
         });
 
         btnSave.setOnClickListener(new View.OnClickListener() {

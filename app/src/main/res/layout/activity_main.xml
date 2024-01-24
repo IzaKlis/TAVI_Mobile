@@ -8,14 +8,13 @@
     android:background="@color/colorWhite"
     tools:context=".MainActivity">
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <include
             android:id="@+id/app_bar"
-            layout="@layout/main_appbar"></include>
+            layout="@layout/main_appbar" />
 
         <EditText
             android:id="@+id/inputAddPost"
@@ -35,9 +34,8 @@
             app:layout_constraintBottom_toTopOf="@+id/recyclerview"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/app_bar">
+            app:layout_constraintTop_toBottomOf="@+id/app_bar" />
 
-        </EditText>
 
         <ImageView
             android:id="@+id/addImagePost"

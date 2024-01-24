@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "237996944948",
+    "project_id": "tavi-8c1c2",
+    "storage_bucket": "tavi-8c1c2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:237996944948:android:abb40bd0f58d353b7f2461",
+        "android_client_info": {
+          "package_name": "com.example.tavi"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDgJk0Wpqgt7AZUiU45IjVtMWz7xrlvkOc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

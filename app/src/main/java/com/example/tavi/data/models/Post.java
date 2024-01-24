@@ -14,7 +14,7 @@ public class Post {
     private int id;
     @ColumnInfo(name = "title")
     private String title;
-    @ColumnInfo(name = "content")
+    @ColumnInfo(name =  "content")
     private String content;
     @ColumnInfo(name = "date_created")
     private Date dateCreated;
