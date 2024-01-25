@@ -20,18 +20,19 @@ public class ReactionRepository {
         AppDatabase.databaseWriteExecutor.execute(() -> reactionDao.insert(reaction));
     }
 
-    public void updateRelation(Reaction reaction) {
+    public void updateReaction(Reaction reaction) {
         AppDatabase.databaseWriteExecutor.execute(() -> reactionDao.update(reaction));
     }
 
-    public void deleteRelation(Reaction reaction) {
+    public void deleteReaction(Reaction reaction) {
         AppDatabase.databaseWriteExecutor.execute(() ->reactionDao.delete(reaction));
     }
 
     public LiveData<List<Reaction>> findAllReactions() {
         return reactionDao.findAll();
     }
-    public LiveData<Reaction> findPostReactionsByFkPairId(int idPost, int idUser) {
+    public LiveData<Reaction> findPostReactionsByFkPairId(int idPost, String idUser) {
         return reactionDao.findPostReactionsByFkPairId(idPost,idUser);
     }
+
 }

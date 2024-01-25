@@ -7,6 +7,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
 import com.example.tavi.data.models.Post;
+import com.example.tavi.data.models.Reaction;
 import com.example.tavi.data.repositories.PostRepository;
 import java.util.List;
 
@@ -37,7 +38,7 @@ public class PostViewModel extends AndroidViewModel {
         return postRepository.findPostById(postId);
     }
 
-    public LiveData<List<Post>> findPostsByUserId(int userId) {
+    public LiveData<List<Post>> findPostsByUserId(String userId) {
         return postRepository.findPostsByUserId(userId);
     }
 }

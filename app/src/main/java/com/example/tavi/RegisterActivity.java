@@ -11,12 +11,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.tavi.data.viewModels.UserViewModel;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class RegisterActivity extends AppCompatActivity {
     TextView alreadyHaveAnAccount;
-    UserViewModel userViewModel;
     private EditText inputPassword, inputEmail, inputConfirmPassword;
     Button btnRegister;
     FirebaseAuth mAuth;

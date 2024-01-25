@@ -4,8 +4,6 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import java.util.Date;
-
 @Entity(tableName = "Posts_Reactions")
 public class Reaction {
     @PrimaryKey(autoGenerate = true)
@@ -15,7 +13,7 @@ public class Reaction {
     @ColumnInfo(name = "id_post")
     private int postId;
     @ColumnInfo(name = "id_user")
-    private int userId;
+    private String userId;
 
     public int getId() {
         return id;
@@ -41,11 +39,11 @@ public class Reaction {
         this.postId = postId;
     }
 
-    public int getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 }

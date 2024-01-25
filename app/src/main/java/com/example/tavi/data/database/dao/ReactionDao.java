@@ -22,9 +22,10 @@ public interface ReactionDao {
 
     @Delete
     void delete(Reaction reaction);
-    @Query("SELECT * FROM posts_reactions ORDER BY id")
+    @Query("SELECT * FROM Posts_reactions ORDER BY id")
     LiveData<List<Reaction>> findAll();
 
-    @Query("SELECT * FROM posts_reactions WHERE id_post = :idPost AND  id_user = :idUser")
-    LiveData<Reaction> findPostReactionsByFkPairId(int idPost, int idUser);
+    @Query("SELECT * FROM Posts_reactions WHERE id_post = :idPost AND  id_user = :idUser")
+    LiveData<Reaction> findPostReactionsByFkPairId(int idPost, String idUser);
+
 }

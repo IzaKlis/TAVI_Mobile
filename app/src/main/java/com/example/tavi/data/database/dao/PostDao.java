@@ -23,12 +23,12 @@ public interface PostDao {
     @Delete
     void delete(Post post);
 
-    @Query("SELECT * FROM posts ORDER BY id")
+    @Query("SELECT * FROM Posts")
     LiveData<List<Post>> findAll();
 
-    @Query("SELECT * FROM posts WHERE id = :postId LIMIT 1")
+    @Query("SELECT * FROM Posts WHERE id = :postId LIMIT 1")
     LiveData<Post> findPostById(int postId);
 
-    @Query("SELECT * FROM posts WHERE id_user = :userId")
-    LiveData<List<Post>> findPostsByUserId(int userId);
+    @Query("SELECT * FROM Posts WHERE id_user = :userId")
+    LiveData<List<Post>> findPostsByUserId(String userId);
 }

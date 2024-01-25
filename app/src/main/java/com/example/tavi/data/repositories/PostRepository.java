@@ -34,7 +34,7 @@ public class PostRepository {
     public LiveData<Post> findPostById(int postId){
         return postDao.findPostById(postId);
     }
-    public LiveData<List<Post>> findPostsByUserId(int userId) {
+    public LiveData<List<Post>> findPostsByUserId(String userId) {
         return postDao.findPostsByUserId(userId);
     }
     public LiveData<List<Post>> getAllPosts() {
