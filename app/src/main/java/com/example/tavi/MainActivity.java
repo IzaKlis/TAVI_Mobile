@@ -29,11 +29,21 @@ import android.widget.Toast;
 import com.example.tavi.data.models.Post;
 import com.example.tavi.data.viewModels.PostViewModel;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -41,15 +51,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     Toolbar toolbar;
     DrawerLayout drawerLayout;
     NavigationView navigationView;
+
+    FirebaseAuth mAuth;
+    FirebaseUser mUser;
+    DatabaseReference mUserRef;
+    String profileImageUrlV, usernameV;
+    CircleImageView profileImageHeader;
+    TextView usernameHeader;
     ImageView addImagePost, sendImagePost;
     EditText inputPostDesc;
     Uri imageUri;
     ProgressDialog mLoadingBar;
-
     PostViewModel postViewModel;
-
     RecyclerView recyclerView;
-
     private PostAdapter adapter;
 
     public MainActivity() {
@@ -67,6 +81,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.icons8_menu);
 
+        mAuth = FirebaseAuth.getInstance();
+        mUser = mAuth.getCurrentUser();
+        mUserRef = FirebaseDatabase.getInstance("https://tavi-8c1c2-default-rtdb.europe-west1.firebasedatabase.app/").getReference().child("Users");
+
         addImagePost = findViewById(R.id.addImagePost);
         sendImagePost = findViewById(R.id.send_post_imageView);
         inputPostDesc = findViewById(R.id.inputAddPost);
@@ -78,7 +96,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawerLayout = findViewById(R.id.drawerLayout);
         navigationView = findViewById(R.id.navView);
 
-        navigationView.inflateHeaderView(R.layout.drawer_header);
+        View view = navigationView.inflateHeaderView(R.layout.drawer_header);
+        profileImageHeader = view.findViewById(R.id.profileImage_header);
+        usernameHeader = view.findViewById(R.id.username_header);
+
         navigationView.setNavigationItemSelectedListener(this);
 
         sendImagePost.setOnClickListener(v -> AddPost());
@@ -134,6 +155,36 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 }
             });
         }
+    }
+
+    @Override
+    protected void onStart(){
+        super.onStart();
+        if(mUser == null){
+            SendUserToLoginActivity();
+        }else{
+            mUserRef.child(mUser.getUid()).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if(dataSnapshot.exists()){
+                        profileImageUrlV = dataSnapshot.child("profileImage").getValue().toString();
+                        usernameV = dataSnapshot.child("username").getValue().toString();
+                        Picasso.get().load(profileImageUrlV).into(profileImageHeader);
+                        usernameHeader.setText(usernameV);
+                    }
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    Toast.makeText(MainActivity.this, "Ups!", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+    }
+
+    private void SendUserToLoginActivity() {
+        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     @Override
