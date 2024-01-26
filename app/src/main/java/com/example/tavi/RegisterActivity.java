@@ -1,5 +1,6 @@
 package com.example.tavi;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
@@ -14,6 +15,9 @@ import android.widget.Toast;
 
 import com.example.tavi.data.models.User;
 import com.example.tavi.data.viewModels.UserViewModel;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -52,6 +56,7 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
     }
@@ -72,23 +77,27 @@ public class RegisterActivity extends AppCompatActivity {
             mLoadingBar.setMessage("Proszę czekać, trwa rejestracja użytkownika.");
             mLoadingBar.setCanceledOnTouchOutside(false);
             mLoadingBar.show();
-            mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
-                if (task.isSuccessful()) {
-                    FirebaseUser firebaseUser = task.getResult().getUser();
-                    User user = new User();
-                    user.setEmail(firebaseUser.getEmail());
-                    userViewModel.insert(user);
-                    mLoadingBar.dismiss();
-                    Toast.makeText(RegisterActivity.this, "Rejestracja udana", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(RegisterActivity.this, SetupActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                    startActivity(intent);
-                    finish();
-                } else {
-                    mLoadingBar.dismiss();
-                    Toast.makeText(RegisterActivity.this, "Rejestracja nie udana.", Toast.LENGTH_SHORT).show();
+            mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()) {
+                        FirebaseUser firebaseUser = task.getResult().getUser();
+                        User user = new User();
+                        user.setEmail(firebaseUser.getEmail());
+                        userViewModel.insert(user);
+                        mLoadingBar.dismiss();
+                        Toast.makeText(RegisterActivity.this, "Rejestracja udana", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(RegisterActivity.this, SetupActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+                        finish();
+                    } else {
+                        mLoadingBar.dismiss();
+                        Toast.makeText(RegisterActivity.this, "Rejestracja nie udana.", Toast.LENGTH_SHORT).show();
+                    }
                 }
             });
+
         }
     }
 

@@ -103,9 +103,6 @@ public class SetupActivity extends AppCompatActivity {
             mLoadingBar.setTitle("Uzupełnianie profilu.");
             mLoadingBar.setCanceledOnTouchOutside(false);
             mLoadingBar.show();
-//            Intent intent = new Intent(SetupActivity.this, MainActivity.class);
-//            startActivity(intent);
-//            mLoadingBar.dismiss();
             StorageRef.child(mUser.getUid()).putFile(imageUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
