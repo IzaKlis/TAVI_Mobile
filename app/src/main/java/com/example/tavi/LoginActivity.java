@@ -55,14 +55,14 @@ public class LoginActivity extends AppCompatActivity {
             mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
                 if(task.isSuccessful()){
                     mLoadingBar.dismiss();
-                    Toast.makeText(LoginActivity.this, "Logowanie git.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "Logowanie udane.", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(LoginActivity.this, SetupActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
                     finish();
                 }else{
                     mLoadingBar.dismiss();
-                    Toast.makeText(LoginActivity.this,"Logowanie nie git.",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this,"Logowanie nieudane.",Toast.LENGTH_SHORT).show();
                 }
             });
 

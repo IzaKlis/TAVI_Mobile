@@ -6,13 +6,16 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.tavi.data.models.User;
 import com.example.tavi.data.viewModels.UserViewModel;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class RegisterActivity extends AppCompatActivity {
     TextView alreadyHaveAnAccount;
@@ -30,15 +33,27 @@ public class RegisterActivity extends AppCompatActivity {
         inputEmail = findViewById(R.id.inputEmail);
         inputPassword = findViewById(R.id.inputPassword);
         inputConfirmPassword = findViewById(R.id.inputConfirmPassword);
+        btnRegister = findViewById(R.id.btnRegister);
         alreadyHaveAnAccount = findViewById(R.id.alreadyHaveAccount);
 
         mAuth = FirebaseAuth.getInstance();
         mLoadingBar = new ProgressDialog(this);
 
-        btnRegister = findViewById(R.id.btnRegister);
-        btnRegister.setOnClickListener(v -> checkRegistration());
 
-        alreadyHaveAnAccount.setOnClickListener(v -> startActivity(new Intent(RegisterActivity.this, LoginActivity.class)));
+        btnRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                checkRegistration();
+            }
+        });
+
+        alreadyHaveAnAccount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void checkRegistration() {
@@ -59,10 +74,10 @@ public class RegisterActivity extends AppCompatActivity {
             mLoadingBar.show();
             mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
-//                    FirebaseUser firebaseUser = task.getResult().getUser();
-//                    User user = new User();
-//                    user.setEmail(firebaseUser.getEmail());
-//                    userViewModel.insert(user);
+                    FirebaseUser firebaseUser = task.getResult().getUser();
+                    User user = new User();
+                    user.setEmail(firebaseUser.getEmail());
+                    userViewModel.insert(user);
                     mLoadingBar.dismiss();
                     Toast.makeText(RegisterActivity.this, "Rejestracja udana", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(RegisterActivity.this, SetupActivity.class);

@@ -4,13 +4,30 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.ktx.Firebase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+
+import java.util.HashMap;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -21,6 +38,10 @@ public class SetupActivity extends AppCompatActivity {
     Button btnSave;
     Uri imageUri;
     ProgressDialog mLoadingBar;
+    FirebaseAuth mAuth;
+    FirebaseUser mUser;
+    DatabaseReference mRef;
+    StorageReference StorageRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +54,12 @@ public class SetupActivity extends AppCompatActivity {
         inputCountry = findViewById(R.id.inputCountry);
         inputHobby = findViewById(R.id.inputHobby);
         btnSave = findViewById(R.id.btnSave);
+
+        mAuth = FirebaseAuth.getInstance();
+        mUser = mAuth.getCurrentUser();
+        mRef = FirebaseDatabase.getInstance("https://tavi-8c1c2-default-rtdb.europe-west1.firebasedatabase.app/").getReference().child("Users");
+        StorageRef = FirebaseStorage.getInstance().getReference().child("ProfileImages");
+
         mLoadingBar = new ProgressDialog(this);
 
 
@@ -76,9 +103,47 @@ public class SetupActivity extends AppCompatActivity {
             mLoadingBar.setTitle("Uzupełnianie profilu.");
             mLoadingBar.setCanceledOnTouchOutside(false);
             mLoadingBar.show();
-            Intent intent = new Intent(SetupActivity.this, MainActivity.class);
-            startActivity(intent);
-            mLoadingBar.dismiss();
+//            Intent intent = new Intent(SetupActivity.this, MainActivity.class);
+//            startActivity(intent);
+//            mLoadingBar.dismiss();
+            StorageRef.child(mUser.getUid()).putFile(imageUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                    Log.d("TAG", "Zakończono przesyłanie pliku");
+                    if(task.isSuccessful()){
+                        StorageRef.child(mUser.getUid()).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                            @Override
+                            public void onSuccess(Uri uri) {
+                                HashMap hashMap = new HashMap();
+                                hashMap.put("username", username);
+                                hashMap.put("city", city);
+                                hashMap.put("country", country);
+                                hashMap.put("hobby", hobby);
+                                hashMap.put("profileImage", uri.toString());
+                                hashMap.put("status", "offline");
+
+                                mRef.child(mUser.getUid()).setValue(hashMap).addOnSuccessListener(new OnSuccessListener() {
+                                    @Override
+                                    public void onSuccess(Object o) {
+                                        mLoadingBar.dismiss();
+                                        Toast.makeText(SetupActivity.this, "Uzupełnianie profilu zakończone sukcesem", Toast.LENGTH_SHORT).show();
+                                        Intent intent = new Intent(SetupActivity.this, MainActivity.class);
+                                        startActivity(intent);
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        mLoadingBar.dismiss();
+                                        Toast.makeText(SetupActivity.this, "Uzupełnianie profilu nieukończone", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                            }
+                        });
+                    }else{
+                        Log.e("TAG", "Błąd podczas przesyłania pliku: " + task.getException().getMessage());
+                    }
+                }
+            });
         }
     }
 
