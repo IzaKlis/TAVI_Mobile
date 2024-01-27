@@ -182,6 +182,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             finish();
         } else if (itemId == R.id.blog) {
             Toast.makeText(this, "Blog", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(MainActivity.this, MyPostsActivity.class);
+            startActivity(intent);
+            finish();
         } else if (itemId == R.id.addFriends) {
             Toast.makeText(this, "Znajomi", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(MainActivity.this, FindFriendActivity.class);

@@ -25,6 +25,9 @@
             android:name=".SetupActivity"
             android:exported="false" />
         <activity
+            android:name=".MyPostsActivity"
+            android:exported="false" />
+        <activity
             android:name=".SplashActivity"
             android:exported="true">
             <intent-filter>
