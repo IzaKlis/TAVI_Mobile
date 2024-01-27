@@ -6,9 +6,11 @@ import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+import androidx.room.Transaction;
 import androidx.room.Update;
 
 import com.example.tavi.data.models.Post;
+import com.example.tavi.data.models.relations.PostDetails;
 
 import java.util.List;
 
@@ -31,4 +33,5 @@ public interface PostDao {
 
     @Query("SELECT * FROM Posts WHERE id_user = :userId")
     LiveData<List<Post>> findPostsByUserId(String userId);
+
 }

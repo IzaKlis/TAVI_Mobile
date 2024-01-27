@@ -3,6 +3,7 @@ package com.example.tavi.data.repositories;
 import android.content.Context;
 
 import androidx.lifecycle.LiveData;
+import androidx.room.Query;
 
 import com.example.tavi.data.database.AppDatabase;
 import com.example.tavi.data.database.dao.ReactionDao;
@@ -28,11 +29,17 @@ public class ReactionRepository {
         AppDatabase.databaseWriteExecutor.execute(() ->reactionDao.delete(reaction));
     }
 
-    public LiveData<List<Reaction>> findAllReactions() {
-        return reactionDao.findAll();
+    public LiveData<List<Reaction>> findAllReactions(int idPost) {
+        return reactionDao.findAllByPostId(idPost);
     }
     public LiveData<Reaction> findPostReactionsByFkPairId(int idPost, String idUser) {
         return reactionDao.findPostReactionsByFkPairId(idPost,idUser);
     }
+    public LiveData<Integer> getReactionCountForPost(int postId) {
+        return reactionDao.getReactionCountForPost(postId);
+    }
 
+    public Reaction findReaction (int idPost,String idUser){
+        return reactionDao.findReaction(idPost,idUser);
+    }
 }

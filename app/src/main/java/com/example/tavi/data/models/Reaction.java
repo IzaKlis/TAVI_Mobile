@@ -15,6 +15,11 @@ public class Reaction {
     @ColumnInfo(name = "id_user")
     private String userId;
 
+    public Reaction(){
+
+    }
+
+
     public int getId() {
         return id;
     }

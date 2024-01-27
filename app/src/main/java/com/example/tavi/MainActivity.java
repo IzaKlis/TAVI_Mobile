@@ -6,7 +6,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -29,6 +31,9 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.tavi.data.models.Post;
+import com.example.tavi.data.models.Reaction;
+import com.example.tavi.data.models.relations.PostDetails;
+import com.example.tavi.data.viewModels.CommentViewModel;
 import com.example.tavi.data.viewModels.PostViewModel;
 import com.example.tavi.data.viewModels.ReactionViewModel;
 import com.google.android.material.navigation.NavigationView;
@@ -106,14 +111,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
-        adapter = new PostAdapter(new ViewModelProvider(this).get(ReactionViewModel.class));
+        adapter = new PostAdapter(new ViewModelProvider(this).get(ReactionViewModel.class),new ViewModelProvider(this).get(CommentViewModel.class));
         recyclerView.setAdapter(adapter);
 
         LiveData<List<Post>> postList = postViewModel.findAllPosts();
         Log.d("MainActivity", " postList.getValue()");
         postList.observe(this, posts -> {
             if (posts != null) {
-                Log.d("MainActivity", "Number of posts: " + posts.size());
                 adapter.setPostList(posts);
             } else {
                 Log.d("MainActivity", "Posts list is null");
@@ -156,7 +160,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             postViewModel.findAllPosts().observe(this, posts -> {
                 if (posts != null && posts.size() > initialPostCount) {
                     mLoadingBar.dismiss();
-                    Toast.makeText(MainActivity.this, "Dodano nowy post!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Dodano nowy post!", Toast.LENGTH_SHORT).show();
                 }
             });
         }
@@ -209,7 +213,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public class PostHolder extends RecyclerView.ViewHolder {
 
         Post post;
-        ReactionViewModel  reactionViewModel;
+        ReactionViewModel reactionViewModel;
+        CommentViewModel commentViewModel;
         private final TextView profileUsername;
         private final ImageView profileImage;
         private final TextView timesAgo;
@@ -220,9 +225,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         private final TextView likesCounter;
         private final ImageView commentImage;
         private final TextView commentCounter;
+        private boolean isPostLiked = false;
 
 
-        public PostHolder(LayoutInflater inflater, ViewGroup parent,ReactionViewModel reactionViewModel) {
+
+        public PostHolder(LayoutInflater inflater, ViewGroup parent, ReactionViewModel reactionViewModel,CommentViewModel commentViewModel) {
             super(inflater.inflate(R.layout.single_view_post, parent, false));
             profileUsername = itemView.findViewById(R.id.profileUsernamePost);
             profileImage = itemView.findViewById(R.id.profileImagePost);
@@ -234,15 +241,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             likesCounter = itemView.findViewById(R.id.textView4);
             commentImage = itemView.findViewById(R.id.imageView4);
             commentCounter = itemView.findViewById(R.id.commentCounter);
-            this.reactionViewModel=reactionViewModel;
+            this.reactionViewModel = reactionViewModel;
+            this.commentViewModel=commentViewModel;
+            likeImage.setOnClickListener(v -> handleLikeButtonClick());
 
-            likeImage.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-//                    reactionViewModel.likePost(post, userId);
-                    likeImage.setColorFilter(Color.GREEN);
-                }
-            });
         }
 
         public void bind(Post post) {
@@ -257,6 +259,44 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             } else {
                 postImage.setVisibility(View.GONE);
             }
+            reactionViewModel.getAllReactions(post.getId()).observe(MainActivity.this, reactions -> {
+                int reactionCount = reactions != null ? reactions.size() : 0;
+                for (Reaction reaction : reactions) {
+                    if (reaction.getUserId().equals(userId) && reaction.getType().equals("like")) {
+                        isPostLiked = true;
+                        break;
+                    }
+                }
+                Log.d("MainActivity","polubione");
+                Log.d("MainActivity",String.valueOf(reactionCount));
+                likesCounter.setText(String.valueOf(reactionCount));
+                likeImage.setColorFilter(isPostLiked ? Color.GREEN : Color.GRAY);
+            });
+            commentViewModel.findAllByPostId(post.getId()).observe(MainActivity.this, comments -> {
+                int commentsCount = comments != null ? comments.size() : 0;
+                Log.d("MainActivity","komentarze");
+                Log.d("MainActivity",String.valueOf(commentsCount));
+                commentCounter.setText(String.valueOf(commentsCount));
+            });
+
+            likeImage.setOnClickListener(v -> handleLikeButtonClick());
+
+        }
+
+        private void handleLikeButtonClick() {
+            if (isPostLiked) {
+                reactionViewModel.findPostReactionsByFkPairId(post.getId(),userId).observe(MainActivity.this, reaction -> {
+                    if (reaction != null) {
+                        Reaction foundReaction = reaction;
+                        reactionViewModel.unlikePost(foundReaction);
+                    }
+                });
+                isPostLiked = false;
+            } else {
+                isPostLiked = true;
+                reactionViewModel.likePost(post.getId(), userId);
+            }
+            likeImage.setColorFilter(isPostLiked ? Color.GREEN : Color.GRAY);
         }
 
         private void loadImage(String imageUrl) {
@@ -269,18 +309,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public class PostAdapter extends RecyclerView.Adapter<PostHolder> {
         private List<Post> postList;
         private ReactionViewModel reactionViewModel;
+        private CommentViewModel commentViewModel;
 
 
-        public PostAdapter(ReactionViewModel reactionViewModel) {
+        public PostAdapter(ReactionViewModel reactionViewModel,CommentViewModel commentViewModel) {
             this.postList = new ArrayList<>();
             this.reactionViewModel = reactionViewModel;
+            this.commentViewModel =commentViewModel;
         }
 
         @NonNull
         @Override
         public PostHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             LayoutInflater inflate = LayoutInflater.from(parent.getContext());
-            return new PostHolder(inflate, parent,reactionViewModel);
+            return new PostHolder(inflate, parent, reactionViewModel,commentViewModel);
         }
 
         public void setPostList(List<Post> posts) {

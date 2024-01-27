@@ -3,10 +3,12 @@ package com.example.tavi.data.repositories;
 import android.content.Context;
 
 import androidx.lifecycle.LiveData;
+import androidx.room.Query;
 
 import com.example.tavi.data.database.AppDatabase;
 import com.example.tavi.data.database.dao.PostDao;
 import com.example.tavi.data.models.Post;
+import com.example.tavi.data.models.relations.PostDetails;
 
 
 import java.util.List;
@@ -14,6 +16,7 @@ import java.util.List;
 public class PostRepository {
 
     private PostDao postDao;
+
     public PostRepository(Context context) {
         AppDatabase database = AppDatabase.getInstance(context);
         postDao = database.postDao();
@@ -31,14 +34,16 @@ public class PostRepository {
         AppDatabase.databaseWriteExecutor.execute(() -> postDao.delete(post));
     }
 
-    public LiveData<Post> findPostById(int postId){
+    public LiveData<Post> findPostById(int postId) {
         return postDao.findPostById(postId);
     }
+
     public LiveData<List<Post>> findPostsByUserId(String userId) {
         return postDao.findPostsByUserId(userId);
     }
+
     public LiveData<List<Post>> getAllPosts() {
-       return postDao.findAll();
+        return postDao.findAll();
     }
 
 }

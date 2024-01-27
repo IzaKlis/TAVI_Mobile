@@ -57,10 +57,6 @@ public class RegisterActivity extends AppCompatActivity {
             mLoadingBar.show();
             mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
-//                    FirebaseUser firebaseUser = task.getResult().getUser();
-//                    User user = new User();
-//                    user.setEmail(firebaseUser.getEmail());
-//                    userViewModel.insert(user);
                     mLoadingBar.dismiss();
                     Toast.makeText(RegisterActivity.this, "Rejestracja udana", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(RegisterActivity.this, SetupActivity.class);

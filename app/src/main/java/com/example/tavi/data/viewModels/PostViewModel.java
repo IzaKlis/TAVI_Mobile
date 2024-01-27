@@ -8,6 +8,7 @@ import androidx.lifecycle.LiveData;
 
 import com.example.tavi.data.models.Post;
 import com.example.tavi.data.models.Reaction;
+import com.example.tavi.data.models.relations.PostDetails;
 import com.example.tavi.data.repositories.PostRepository;
 import java.util.List;
 

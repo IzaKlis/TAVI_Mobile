@@ -37,42 +37,8 @@ public abstract class AppDatabase extends RoomDatabase {
         if (instance == null) {
             instance = Room.databaseBuilder(context.getApplicationContext(),
                             AppDatabase.class, DATABASE_NAME)
-                    .addCallback(roomDatabaseCallback)
                     .build();
         }
         return instance;
     }
-    private static final RoomDatabase.Callback roomDatabaseCallback = new RoomDatabase.Callback() {
-        @Override
-        public void onCreate(SupportSQLiteDatabase db) {
-            super.onCreate(db);
-
-            databaseWriteExecutor.execute(() -> {
-                PostDao postDao = instance.postDao();
-                Post post1 = new Post();
-                post1.setContent("SampleContent1");
-                post1.setUserId("1234");
-                post1.setDateCreated(new Date());
-                post1.setPicture("sample_picture_3.jpg");
-                postDao.insert(post1);
-
-                Post post2 = new Post();
-                post2.setContent("SampleContent2");
-                post2.setUserId("asasas");
-                post2.setPicture("sample_picture_3.jpg");
-                post2.setDateCreated(new Date());
-                postDao.insert(post2);
-
-                Post post3 = new Post();
-                post3.setUserId("asdas");
-                post3.setContent("SampleContent2");
-                post3.setPicture("sample_picture_3.jpg");
-                post3.setDateCreated(new Date());
-                postDao.insert(post3);
-
-
-                Log.d("MainActivity", "----------------inserty sie zrobiły---------------------");
-            });
-        }
-    };
 }

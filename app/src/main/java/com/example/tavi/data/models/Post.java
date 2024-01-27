@@ -22,9 +22,11 @@ public class Post {
     @ColumnInfo(name = "post_picture")
     private String picture;
 
+    @ColumnInfo(name = "likes_counter")
+    private int likesCounter;
+
 
     public Post() {
-
     }
 
     public int getId() {
@@ -65,5 +67,13 @@ public class Post {
 
     public void setPicture(String picture) {
         this.picture = picture;
+    }
+
+    public int getLikesCounter() {
+        return likesCounter;
+    }
+
+    public void setLikesCounter(int likesCounter) {
+        this.likesCounter = likesCounter;
     }
 }

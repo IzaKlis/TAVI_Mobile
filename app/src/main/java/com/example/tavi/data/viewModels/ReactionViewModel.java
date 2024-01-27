@@ -1,9 +1,11 @@
 package com.example.tavi.data.viewModels;
 
 import android.app.Application;
+import android.util.Log;
 
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 
 import com.example.tavi.data.models.Post;
@@ -32,31 +34,42 @@ public class ReactionViewModel extends AndroidViewModel {
         reactionRepository.deleteReaction(reaction);
     }
 
-    public LiveData<List<Reaction>> getAllReactions() {
-        return reactionRepository.findAllReactions();
+    public LiveData<List<Reaction>> getAllReactions(int idPost) {
+        return reactionRepository.findAllReactions(idPost);
     }
 
-    public LiveData<Reaction> getPostReactionsByPostIdAndUserId(int idPost, String idUser) {
-        return reactionRepository.findPostReactionsByFkPairId(idPost, idUser);
+    public void likePost(int postId, String userId) {
+        Reaction reaction = new Reaction();
+        reaction.setPostId(postId);
+        reaction.setUserId(userId);
+        reaction.setType("like");
+        Log.d("MainActivity", reaction.getUserId());
+        Log.d("MainActivity", String.valueOf(reaction.getPostId()));
+        Log.d("MainActivity", reaction.getType());
+        Log.d("MainActivity", String.valueOf(reaction.getId()));
+
+        try {
+            reactionRepository.insertReaction(reaction);
+            Log.d("MainActivity", "Reaction inserted: " + postId + " and user: " + userId);
+        } catch (Exception e) {
+            Log.e("MainActivity", "Failed to insert reaction: " + e.getMessage());
+        }
     }
 
-//    public void likePost(Post post, String userId){
-//        LiveData<Reaction> existingReaction = getPostReactionsByPostIdAndUserId(post.getId(), userId);
-//        existingReaction.observeForever(new Observer<Reaction>() {
-//            @Override
-//            public void onChanged(Reaction reaction) {
-//                existingReaction.removeObserver(this);
-//
-//                if (reaction != null) {
-//                    delete(reaction);
-//                } else {
-//                    Reaction likeReaction = new Reaction();
-//                    likeReaction.setType("like");
-//                    likeReaction.setPostId(post.getId());
-//                    likeReaction.setUserId(userId);
-//                    insert(likeReaction);
-//                }
-//            }
-//        });
-//    }
+    public LiveData<Reaction> findPostReactionsByFkPairId(int idPost, String idUser) {
+        return reactionRepository.findPostReactionsByFkPairId(idPost,idUser);
+    }
+
+
+    public void unlikePost(Reaction reaction) {
+        if (reaction != null) {
+            reactionRepository.deleteReaction(reaction);
+        } else {
+            Log.d("MainActivity", "Reaction not found");
+        }
+    }
+
+    public LiveData<Integer> getReactionCountForPost(int postId) {
+        return reactionRepository.getReactionCountForPost(postId);
+    }
 }
