@@ -51,7 +51,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="ℤ𝔸𝕀ℕ𝕋𝔼ℝ𝔼𝕊𝕆𝕎𝔸ℕ𝕀𝔸"
+                android:text="𝕆ℙ𝕀𝕊"
                 app:layout_constraintEnd_toEndOf="@+id/username"
                 app:layout_constraintStart_toStartOf="@+id/username"
                 app:layout_constraintTop_toBottomOf="@+id/username" />

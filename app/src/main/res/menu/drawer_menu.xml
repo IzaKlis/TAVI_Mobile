@@ -3,23 +3,29 @@
 <group android:id="@+id/first">
     <item android:id="@+id/home"
         android:title="𝕊𝕋ℝ𝕆ℕ𝔸 𝔾ŁÓ𝕎ℕ𝔸"
+        android:tint="@color/colorLavender"
         android:icon="@drawable/ic_home" />
     <item android:id="@+id/profile"
         android:title="ℙℝ𝕆𝔽𝕀𝕃"
+        android:tint="@color/colorLavender"
         android:icon="@drawable/ic_home"/>
     <item android:id="@+id/blog"
         android:title="𝔹𝕃𝕆𝔾"
-        android:icon="@drawable/ic_home"/>
+        android:tint="@color/colorLavender"
+        android:icon="@drawable/ic_add_post_image"/>
     <item android:id="@+id/addFriends"
         android:title="ℤℕ𝔸𝕁𝕆𝕄𝕀"
+        android:tint="@color/colorLavender"
         android:icon="@drawable/ic_home"/>
     <item android:id="@+id/chat"
         android:title="ℂℍ𝔸𝕋"
+        android:tint="@color/colorLavender"
         android:icon="@drawable/ic_news"/>
 </group>
     <group android:id="@+id/second">
        <item android:id="@+id/logout"
            android:title="𝕎𝕐𝕃𝕆𝔾𝕌𝕁 𝕊𝕀Ę"
+           android:tint="@color/colorLavender"
            android:icon="@drawable/ic_logout"/>
     </group>
 </menu>

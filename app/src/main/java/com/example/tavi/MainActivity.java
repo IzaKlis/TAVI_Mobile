@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         toolbar = findViewById(R.id.app_bar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("TravelVista");
+        getSupportActionBar().setTitle("\uD835\uDD4Bℝ\uD835\uDD38\uD835\uDD4D\uD835\uDD3C\uD835\uDD43\uD835\uDD4D\uD835\uDD40\uD835\uDD4A\uD835\uDD4B\uD835\uDD38");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.icons8_menu);
 
