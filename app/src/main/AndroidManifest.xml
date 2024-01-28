@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TAVI">
         <activity
+            android:name=".ChatUsersActivity"
+            android:exported="false" />
+        <activity
             android:name=".FriendActivity"
             android:exported="false" />
         <activity

@@ -51,6 +51,7 @@ public class ChatActivity extends AppCompatActivity {
     String OtherUsername, OtherUserProfileImageLink, OtherUserStatus;
     FirebaseRecyclerOptions<Chat>options;
     FirebaseRecyclerAdapter<Chat, ChatMyViewholder>adapter;
+    String myProfileImageLink;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,6 +87,7 @@ public class ChatActivity extends AppCompatActivity {
         mUser = mAuth.getCurrentUser();
 
         LoadOtherUser();
+        LoadMyProfile();
 
         btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,6 +97,22 @@ public class ChatActivity extends AppCompatActivity {
         });
 
         LoadSMS();
+    }
+
+    private void LoadMyProfile() {
+        mUserRef.child(mUser.getUid()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    myProfileImageLink = snapshot.child("profileImage").getValue().toString();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(ChatActivity.this, ""+error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void LoadSMS() {
@@ -109,6 +127,8 @@ public class ChatActivity extends AppCompatActivity {
                     holder.secondUserProfile.setVisibility(View.VISIBLE);
 
                     holder.secondUserText.setText(model.getSms());
+                    Picasso.get().load(myProfileImageLink).into(holder.secondUserProfile);
+
                 }
                 else{
                     holder.firstUserText.setVisibility(View.VISIBLE);

@@ -215,11 +215,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             finish();
         }else if (itemId == R.id.chat) {
             Toast.makeText(this, "Chat", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(MainActivity.this, ChatActivity.class);
+            Intent intent = new Intent(MainActivity.this, ChatUsersActivity.class);
             startActivity(intent);
             finish();
         } else if (itemId == R.id.logout) {
-            Toast.makeText(this, "Wyloguj się", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Wylogowano", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(intent);
             finish();
