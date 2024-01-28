@@ -41,19 +41,14 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.squareup.picasso.Picasso;
-import org.checkerframework.checker.units.qual.A;
 
+import org.checkerframework.checker.units.qual.A;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-
-import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -61,19 +56,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     Toolbar toolbar;
     DrawerLayout drawerLayout;
     NavigationView navigationView;
-
-    FirebaseAuth mAuth;
-    FirebaseUser mUser;
-    DatabaseReference mUserRef;
-    String profileImageUrlV, usernameV;
-    CircleImageView profileImageHeader;
-    TextView usernameHeader;
     ImageView addImagePost, sendImagePost;
     EditText inputPostDesc;
     Uri imageUri;
     ProgressDialog mLoadingBar;
+
     PostViewModel postViewModel;
+
     RecyclerView recyclerView;
+
     private PostAdapter adapter;
     FirebaseAuth mAuth;
     FirebaseUser currentUser;
@@ -92,13 +83,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         toolbar = findViewById(R.id.app_bar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("\uD835\uDD4Bℝ\uD835\uDD38\uD835\uDD4D\uD835\uDD3C\uD835\uDD43\uD835\uDD4D\uD835\uDD40\uD835\uDD4A\uD835\uDD4B\uD835\uDD38");
+        getSupportActionBar().setTitle("TravelVista");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.icons8_menu);
-
-        mAuth = FirebaseAuth.getInstance();
-        mUser = mAuth.getCurrentUser();
-        mUserRef = FirebaseDatabase.getInstance("https://tavi-8c1c2-default-rtdb.europe-west1.firebasedatabase.app/").getReference().child("Users");
 
         addImagePost = findViewById(R.id.addImagePost);
         sendImagePost = findViewById(R.id.send_post_imageView);
@@ -111,10 +98,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawerLayout = findViewById(R.id.drawerLayout);
         navigationView = findViewById(R.id.navView);
 
-        View view = navigationView.inflateHeaderView(R.layout.drawer_header);
-        profileImageHeader = view.findViewById(R.id.profileImage_header);
-        usernameHeader = view.findViewById(R.id.username_header);
-
+        navigationView.inflateHeaderView(R.layout.drawer_header);
         navigationView.setNavigationItemSelectedListener(this);
 
         sendImagePost.setOnClickListener(v -> AddPost());
@@ -183,36 +167,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     @Override
-    protected void onStart(){
-        super.onStart();
-        if(mUser == null){
-            SendUserToLoginActivity();
-        }else{
-            mUserRef.child(mUser.getUid()).addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    if(dataSnapshot.exists()){
-                        profileImageUrlV = dataSnapshot.child("profileImage").getValue().toString();
-                        usernameV = dataSnapshot.child("username").getValue().toString();
-                        Picasso.get().load(profileImageUrlV).into(profileImageHeader);
-                        usernameHeader.setText(usernameV);
-                    }
-                }
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-                    Toast.makeText(MainActivity.this, "Ups!", Toast.LENGTH_SHORT).show();
-                }
-            });
-        }
-    }
-
-    private void SendUserToLoginActivity() {
-        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-        startActivity(intent);
-        finish();
-    }
-
-    @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         int itemId = menuItem.getItemId();
 
@@ -232,22 +186,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             startActivity(intent);
             finish();
         } else if (itemId == R.id.addFriends) {
-            Toast.makeText(this, "Użytkownicy", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Znajomi", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(MainActivity.this, FindFriendActivity.class);
             startActivity(intent);
             finish();
-        } else if (itemId == R.id.friends) {
-            Toast.makeText(this, "Znajomi", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(MainActivity.this, FriendActivity.class);
-            startActivity(intent);
-            finish();
-        }else if (itemId == R.id.chat) {
+        } else if (itemId == R.id.chat) {
             Toast.makeText(this, "Chat", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(MainActivity.this, ChatUsersActivity.class);
+            Intent intent = new Intent(MainActivity.this, ChatActivity.class);
             startActivity(intent);
             finish();
         } else if (itemId == R.id.logout) {
-            Toast.makeText(this, "Wylogowano", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Wyloguj się", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(intent);
             finish();
