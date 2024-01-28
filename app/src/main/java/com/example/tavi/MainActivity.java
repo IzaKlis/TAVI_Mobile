@@ -204,11 +204,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else if (itemId == R.id.blog) {
             Toast.makeText(this, "Blog", Toast.LENGTH_SHORT).show();
         } else if (itemId == R.id.addFriends) {
-            Toast.makeText(this, "Znajomi", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Użytkownicy", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(MainActivity.this, FindFriendActivity.class);
             startActivity(intent);
             finish();
-        } else if (itemId == R.id.chat) {
+        } else if (itemId == R.id.friends) {
+            Toast.makeText(this, "Znajomi", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(MainActivity.this, FriendActivity.class);
+            startActivity(intent);
+            finish();
+        }else if (itemId == R.id.chat) {
             Toast.makeText(this, "Chat", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(MainActivity.this, ChatActivity.class);
             startActivity(intent);

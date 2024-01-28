@@ -29,7 +29,7 @@ public class ViewFriendActivity extends AppCompatActivity {
     DatabaseReference mUserRef,requestRef,friendRef;
     FirebaseAuth mAuth;
     FirebaseUser mUser;
-    String profileImageUrl,username, city, country;
+    String profileImageUrl,username, city, country, hobby;
     CircleImageView profileImage;
     TextView Username, address;
     Button btnPerform, btnDecline;
@@ -44,7 +44,7 @@ public class ViewFriendActivity extends AppCompatActivity {
 
         mUserRef = FirebaseDatabase.getInstance("https://tavi-8c1c2-default-rtdb.europe-west1.firebasedatabase.app/").getReference().child("Users").child(userID);
         requestRef = FirebaseDatabase.getInstance("https://tavi-8c1c2-default-rtdb.europe-west1.firebasedatabase.app/").getReference().child("Requests");
-        friendRef = FirebaseDatabase.getInstance("https://tavi-8c1c2-default-rtdb.europe-west1.firebasedatabase.app/").getReference().child("riends");
+        friendRef = FirebaseDatabase.getInstance("https://tavi-8c1c2-default-rtdb.europe-west1.firebasedatabase.app/").getReference().child("friends");
 
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
@@ -56,13 +56,136 @@ public class ViewFriendActivity extends AppCompatActivity {
         btnDecline = findViewById(R.id.btnDecline);
 
         LoadUser();
-
         btnPerform.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                PerformAction(userID);
             }
         });
+
+        CheckUserExistance(userID);
+
+        btnDecline.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Unfriend(userID);
+            }
+        });
+    }
+
+    private void Unfriend(String userID) {
+        if(CurrentState.equals("friend")){
+            friendRef.child(mUser.getUid()).child(userID).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if(task.isSuccessful()){
+                        friendRef.child(userID).child(mUser.getUid()).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if(task.isSuccessful()){
+                                    Toast.makeText(ViewFriendActivity.this, "Nie jesteście już znajomymi", Toast.LENGTH_SHORT).show();
+                                    CurrentState="nothing_happen";
+                                    btnPerform.setText("Wyślij zaproszenie");
+                                    btnDecline.setVisibility(View.GONE);
+                                }
+                            }
+                        });
+                    }
+                }
+            });
+        }
+        if(CurrentState.equals("he_sent_pending")){
+            HashMap hashMap = new HashMap();
+            hashMap.put("status", "decline");
+            requestRef.child(userID).child(mUser.getUid()).updateChildren(hashMap).addOnCompleteListener(new OnCompleteListener() {
+                @Override
+                public void onComplete(@NonNull Task task) {
+                    Toast.makeText(ViewFriendActivity.this, "Odrzucono znajomość", Toast.LENGTH_SHORT).show();
+                    CurrentState = "he_sent_pending";
+                    btnPerform.setVisibility(View.GONE);
+                    btnDecline.setVisibility(View.GONE);
+                }
+            });
+        }
+    }
+
+    private void CheckUserExistance(String userID) {
+        friendRef.child(mUser.getUid()).child(userID).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    CurrentState="friend";
+                    btnPerform.setText("Wyślij wiadomość");
+                    btnDecline.setText("Usuń znajomego");
+                    btnDecline.setVisibility(View.VISIBLE);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        friendRef.child(userID).child(mUser.getUid()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    CurrentState="friend";
+                    btnPerform.setText("Wyślij wiadomość");
+                    btnDecline.setText("Usuń znajomego");
+                    btnDecline.setVisibility(View.VISIBLE);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        requestRef.child(mUser.getUid()).child(userID).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    if(snapshot.child("status").getValue().toString().equals("pending")){
+                        CurrentState = "I_sent_pending";
+                        btnPerform.setText("Anuluj zaproszenie");
+                        btnDecline.setVisibility(View.GONE);
+                    }
+                    if(snapshot.child("status").getValue().toString().equals("decline")){
+                        CurrentState = "I_sent_decline";
+                        btnPerform.setText("Anuluj zaproszenie");
+                        btnDecline.setVisibility(View.GONE);
+                    }
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        requestRef.child(userID).child(mUser.getUid()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    if(snapshot.child("status").getValue().toString().equals("pending")){
+                        CurrentState = "he_sent_pending";
+                        btnPerform.setText("Akceptuj zaproszenie");
+                        btnDecline.setText("Odrzuć zaproszenie");
+                        btnDecline.setVisibility(View.VISIBLE);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        if(CurrentState.equals("nothing_happen")){
+            CurrentState="nothing_happen";
+            btnPerform.setText("Wyślij zaproszenie");
+            btnDecline.setVisibility(View.GONE);
+        }
     }
 
     private void PerformAction(String userID) {
@@ -101,7 +224,7 @@ public class ViewFriendActivity extends AppCompatActivity {
             });
         }
         if(CurrentState.equals("he_sent_pending")){
-            requestRef.child(mUser.getUid()).child(userID).removeValue().addOnCompleteListener(new OnCompleteListener() {
+            requestRef.child(userID).child(mUser.getUid()).removeValue().addOnCompleteListener(new OnCompleteListener() {
                 @Override
                 public void onComplete(@NonNull Task task) {
                     if(task.isSuccessful()) {
@@ -109,6 +232,7 @@ public class ViewFriendActivity extends AppCompatActivity {
                         hashMap.put("status", "friend");
                         hashMap.put("username", username);
                         hashMap.put("profileImageUrl", profileImageUrl);
+                        hashMap.put("hobby", hobby);
                         friendRef.child(mUser.getUid()).child(userID).updateChildren(hashMap).addOnCompleteListener(new OnCompleteListener() {
                             @Override
                             public void onComplete(@NonNull Task task) {
@@ -145,6 +269,7 @@ public class ViewFriendActivity extends AppCompatActivity {
                     username=snapshot.child("username").getValue().toString();
                     city=snapshot.child("city").getValue().toString();
                     country=snapshot.child("country").getValue().toString();
+                    hobby=snapshot.child("hobby").getValue().toString();
 
                     Picasso.get().load(profileImageUrl).into(profileImage);
                     Username.setText(username);

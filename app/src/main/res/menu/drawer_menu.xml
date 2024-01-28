@@ -14,6 +14,10 @@
         android:tint="@color/colorLavender"
         android:icon="@drawable/ic_add_post_image"/>
     <item android:id="@+id/addFriends"
+        android:title="𝕌Ż𝕐𝕋𝕂𝕆𝕎ℕ𝕀ℂ𝕐"
+        android:tint="@color/colorLavender"
+        android:icon="@drawable/ic_home"/>
+    <item android:id="@+id/friends"
         android:title="ℤℕ𝔸𝕁𝕆𝕄𝕀"
         android:tint="@color/colorLavender"
         android:icon="@drawable/ic_home"/>

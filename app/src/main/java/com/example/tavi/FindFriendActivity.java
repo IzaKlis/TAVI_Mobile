@@ -54,15 +54,7 @@ public class FindFriendActivity extends AppCompatActivity {
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.icons8_menu);
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-//        returnBtn = findViewById(R.id.returnBtn);
-//        returnBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(FindFriendActivity.this, MainActivity.class);
-//                startActivity(intent);
-//                finish();
-//            }
-//        });
+
         
         mUsersRef = FirebaseDatabase.getInstance("https://tavi-8c1c2-default-rtdb.europe-west1.firebasedatabase.app/").getReference().child("Users");
         mAuth = FirebaseAuth.getInstance();
