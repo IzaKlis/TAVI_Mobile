@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/app_bar"
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize"
-    android:background="@color/colorBlue"
-    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
-
-
+    android:background="@color/colorWhite"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+    android:id="@+id/app_bar"
+    >
+    <ImageView
+        android:layout_width="64dp"
+        android:layout_height="62dp"
+        android:src="@drawable/logovista"/>
 </androidx.appcompat.widget.Toolbar>

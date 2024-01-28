@@ -1,26 +1,17 @@
 package com.example.tavi;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.tavi.data.models.User;
-import com.example.tavi.data.viewModels.UserViewModel;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 public class RegisterActivity extends AppCompatActivity {
     TextView alreadyHaveAnAccount;
@@ -37,28 +28,15 @@ public class RegisterActivity extends AppCompatActivity {
         inputEmail = findViewById(R.id.inputEmail);
         inputPassword = findViewById(R.id.inputPassword);
         inputConfirmPassword = findViewById(R.id.inputConfirmPassword);
-        btnRegister = findViewById(R.id.btnRegister);
         alreadyHaveAnAccount = findViewById(R.id.alreadyHaveAccount);
 
         mAuth = FirebaseAuth.getInstance();
         mLoadingBar = new ProgressDialog(this);
 
+        btnRegister = findViewById(R.id.btnRegister);
+        btnRegister.setOnClickListener(v -> checkRegistration());
 
-        btnRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                checkRegistration();
-            }
-        });
-
-        alreadyHaveAnAccount.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
+        alreadyHaveAnAccount.setOnClickListener(v -> startActivity(new Intent(RegisterActivity.this, LoginActivity.class)));
     }
 
     private void checkRegistration() {
@@ -77,28 +55,19 @@ public class RegisterActivity extends AppCompatActivity {
             mLoadingBar.setMessage("Proszę czekać, trwa rejestracja użytkownika.");
             mLoadingBar.setCanceledOnTouchOutside(false);
             mLoadingBar.show();
-            mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-                    if (task.isSuccessful()) {
-                        FirebaseUser firebaseUser = task.getResult().getUser();
-                        User user = new User();
-                        user.setEmail(firebaseUser.getEmail());
-                        userViewModel.insert(user);
-                        mLoadingBar.dismiss();
-                        Toast.makeText(RegisterActivity.this, "Rejestracja udana", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(RegisterActivity.this, SetupActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                        startActivity(intent);
-                        finish();
-                    } else {
-                        mLoadingBar.dismiss();
-                        Toast.makeText(RegisterActivity.this, "Rejestracja nie udana.", Toast.LENGTH_SHORT).show();
-                    }
-
+            mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    mLoadingBar.dismiss();
+                    Toast.makeText(RegisterActivity.this, "Rejestracja udana", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(RegisterActivity.this, SetupActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                    finish();
+                } else {
+                    mLoadingBar.dismiss();
+                    Toast.makeText(RegisterActivity.this, "Rejestracja nie udana.", Toast.LENGTH_SHORT).show();
                 }
             });
-
         }
     }
 
