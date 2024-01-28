@@ -83,7 +83,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:ems="10"
-                android:hint="ℤ𝔸𝕀ℕ𝕋𝔼ℝ𝔼𝕊𝕆𝕎𝔸ℕ𝕀𝔸"
+                android:hint="𝕆ℙ𝕀𝕊"
                 android:inputType="text"
                 android:textColorHint="@color/colorBlack"
                 app:layout_constraintStart_toStartOf="@+id/inputCountry"
