@@ -55,7 +55,6 @@ public class FindFriendActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 //        returnBtn = findViewById(R.id.returnBtn);
-//
 //        returnBtn.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
@@ -86,7 +85,14 @@ public class FindFriendActivity extends AppCompatActivity {
                     holder.itemView.setVisibility(View.GONE);
                     holder.itemView.setLayoutParams(new RecyclerView.LayoutParams(0,0));
                 }
-
+                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(FindFriendActivity.this, ViewFriendActivity.class);
+                        intent.putExtra("userKey",getRef(position).getKey().toString());
+                        startActivity(intent);
+                    }
+                });
             }
 
             @NonNull

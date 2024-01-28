@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TAVI">
         <activity
+            android:name=".ViewFriendActivity"
+            android:exported="false" />
+        <activity
             android:name=".ForgotPasswordActivity"
             android:exported="false" />
         <activity
