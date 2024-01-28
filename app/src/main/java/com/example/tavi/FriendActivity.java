@@ -46,7 +46,7 @@ public class FriendActivity extends AppCompatActivity {
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.icons8_menu);
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mRef = FirebaseDatabase.getInstance("https://tavi-8c1c2-default-rtdb.europe-west1.firebasedatabase.app/").getReference().child("Friends");
+        mRef = FirebaseDatabase.getInstance("https://tavi-8c1c2-default-rtdb.europe-west1.firebasedatabase.app/").getReference().child("friends");
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
 
@@ -62,6 +62,15 @@ public class FriendActivity extends AppCompatActivity {
                 Picasso.get().load(model.getProfileImageUrl()).into(holder.profileImageUrl);
                 holder.username.setText(model.getUsername());
                 holder.hobby.setText(model.getHobby());
+
+                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(FriendActivity.this, ChatActivity.class);
+                        intent.putExtra("OtherUserID", getRef(position).getKey().toString());
+                        startActivity(intent);
+                    }
+                });
             }
             @NonNull
             @Override

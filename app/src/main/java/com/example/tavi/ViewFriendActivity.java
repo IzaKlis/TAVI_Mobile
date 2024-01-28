@@ -3,6 +3,7 @@ package com.example.tavi;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -34,12 +35,13 @@ public class ViewFriendActivity extends AppCompatActivity {
     TextView Username, address;
     Button btnPerform, btnDecline;
     String CurrentState = "nothing_happen";
+    String userID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_friend);
-        final String userID = getIntent().getStringExtra("userKey");
+        userID = getIntent().getStringExtra("userKey");
         Toast.makeText(this, "Widok znajomego", Toast.LENGTH_SHORT).show();
 
         mUserRef = FirebaseDatabase.getInstance("https://tavi-8c1c2-default-rtdb.europe-west1.firebasedatabase.app/").getReference().child("Users").child(userID);
@@ -256,7 +258,9 @@ public class ViewFriendActivity extends AppCompatActivity {
             });
         }
         if(CurrentState.equals("friend")){
-            //
+            Intent intent = new Intent(ViewFriendActivity.this, ChatActivity.class);
+            intent.putExtra("OtherUserID", userID);
+            startActivity(intent);
         }
     }
 
