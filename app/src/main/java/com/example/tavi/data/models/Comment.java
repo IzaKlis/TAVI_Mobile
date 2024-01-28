@@ -19,7 +19,7 @@ public class Comment {
     @ColumnInfo(name = "id_post")
     private int postId;
     @ColumnInfo(name = "id_user")
-    private int userId;
+    private String userId;
 
     public int getId() {
         return id;
@@ -53,11 +53,11 @@ public class Comment {
         this.postId = postId;
     }
 
-    public int getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 }

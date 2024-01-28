@@ -79,13 +79,7 @@
             app:layout_constraintHorizontal_bias="0.511"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/inputAddPost"
-            app:layout_constraintVertical_bias="0.13">
-
-            <include
-                android:id="@+id/single_post"
-                layout="@layout/single_view_post"
-                app:layout_constraintTop_toTopOf="parent"></include>
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            app:layout_constraintVertical_bias="0.13"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.navigation.NavigationView

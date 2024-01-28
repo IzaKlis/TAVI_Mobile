@@ -18,12 +18,12 @@ import com.example.tavi.data.viewModels.UserViewModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class RegisterActivity extends AppCompatActivity {
     TextView alreadyHaveAnAccount;
-    UserViewModel userViewModel;
     private EditText inputPassword, inputEmail, inputConfirmPassword;
     Button btnRegister;
     FirebaseAuth mAuth;
@@ -95,6 +95,7 @@ public class RegisterActivity extends AppCompatActivity {
                         mLoadingBar.dismiss();
                         Toast.makeText(RegisterActivity.this, "Rejestracja nie udana.", Toast.LENGTH_SHORT).show();
                     }
+
                 }
             });
 
