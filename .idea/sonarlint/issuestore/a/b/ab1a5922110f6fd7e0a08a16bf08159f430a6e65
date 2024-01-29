@@ -1,2 +1,10 @@
 
+j
+java:S1192."MDefine a constant instead of duplicating this literal "MainActivity" 7 times.(€“‡¦8°»ò™Õ1
 {	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¬øŠþÿÿÿÿ8©•ÐºÑ1
+a
+java:S1128"?Remove this unused import 'androidx.lifecycle.MutableLiveData'.(Íèæâýÿÿÿÿ8ñ¼ò™Õ1
+Z
+java:S1128	"8Remove this unused import 'androidx.lifecycle.Observer'.(ÒÁˆÉþÿÿÿÿ8ñ¼ò™Õ1
+[
+java:S1128">Remove this unused import 'com.example.tavi.data.models.Post'.(ë–â£8ñ¼ò™Õ1

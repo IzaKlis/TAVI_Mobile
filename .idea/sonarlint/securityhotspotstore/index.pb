@@ -169,3 +169,9 @@ Q.idea/sonarlint/securityhotspotstore/3/c/3c0878c6bd5797489bf077c829261966fdeaaa
 Q.idea/sonarlint/securityhotspotstore/a/d/addba2ba326c31fdc18c8767c25e45aa4c861aa2,4\0\40b4679f26716bd100a7cd7f065cec613e066635
 Å
 Q.idea/sonarlint/securityhotspotstore/3/e/3e21407366ecafad76d12dd8495755c4033efe70,b\5\b566960286680a5f89fbe2841e07836fe1a74676
+j
+:app/src/main/java/com/example/tavi/FindFriendActivity.java,b\7\b7f1afba95eeb4042045bfadad226bdbd75b447b
+e
+5app/src/main/java/com/example/tavi/SetupActivity.java,f\4\f4aafe8cd14b58babbd5da6de9f4e0dde6368638
+d
+4app/src/main/java/com/example/tavi/ChatActivity.java,2\f\2f243cf13b251528e0046c72de8ea33384c00f3c
