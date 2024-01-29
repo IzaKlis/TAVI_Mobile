@@ -13,8 +13,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.tavi.data.models.User;
-import com.example.tavi.data.viewModels.UserViewModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -23,7 +21,6 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class RegisterActivity extends AppCompatActivity {
     TextView alreadyHaveAnAccount;
-    UserViewModel userViewModel;
     private EditText inputPassword, inputEmail, inputConfirmPassword;
     Button btnRegister;
     FirebaseAuth mAuth;
@@ -82,9 +79,6 @@ public class RegisterActivity extends AppCompatActivity {
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
                         FirebaseUser firebaseUser = task.getResult().getUser();
-                        User user = new User();
-                        user.setEmail(firebaseUser.getEmail());
-                        userViewModel.insert(user);
                         mLoadingBar.dismiss();
                         Toast.makeText(RegisterActivity.this, "Rejestracja udana", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(RegisterActivity.this, SetupActivity.class);
