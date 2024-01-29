@@ -7,11 +7,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
 import com.example.tavi.data.models.Post;
-import com.example.tavi.data.models.Reaction;
-import com.example.tavi.data.models.relations.PostDetails;
 import com.example.tavi.data.repositories.PostRepository;
-
-import java.util.Date;
 import java.util.List;
 
 public class PostViewModel extends AndroidViewModel {
@@ -34,21 +30,14 @@ public class PostViewModel extends AndroidViewModel {
     }
 
     public void delete(Post post) {
-        postRepository.deletePost(post);
+        postRepository.updatePost(post);
     }
 
     public LiveData<Post> findPostById(int postId) {
         return postRepository.findPostById(postId);
     }
 
-    public LiveData<List<Post>> findPostsByUserId(String userId) {
+    public LiveData<List<Post>> findPostsByUserId(int userId) {
         return postRepository.findPostsByUserId(userId);
-    }
-
-    public void updatePostContent(Post post, String content,String picture){
-        post.setPicture(picture);
-        post.setDateCreated(new Date());
-        post.setContent(content);
-        postRepository.updatePost(post);
     }
 }
