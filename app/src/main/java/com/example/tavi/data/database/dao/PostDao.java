@@ -6,11 +6,9 @@ import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
-import androidx.room.Transaction;
 import androidx.room.Update;
 
 import com.example.tavi.data.models.Post;
-import com.example.tavi.data.models.relations.PostDetails;
 
 import java.util.List;
 
@@ -25,13 +23,12 @@ public interface PostDao {
     @Delete
     void delete(Post post);
 
-    @Query("SELECT * FROM Posts")
+    @Query("SELECT * FROM posts ORDER BY id")
     LiveData<List<Post>> findAll();
 
-    @Query("SELECT * FROM Posts WHERE id = :postId LIMIT 1")
+    @Query("SELECT * FROM posts WHERE id = :postId LIMIT 1")
     LiveData<Post> findPostById(int postId);
 
-    @Query("SELECT * FROM Posts WHERE id_user = :userId")
-    LiveData<List<Post>> findPostsByUserId(String userId);
-
+    @Query("SELECT * FROM posts WHERE id_user = :userId")
+    LiveData<List<Post>> findPostsByUserId(int userId);
 }

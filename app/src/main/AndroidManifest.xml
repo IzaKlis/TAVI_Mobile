@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.tavi">
-    <uses-permission android:name="android.permission.INTERNET" />
 
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -12,6 +12,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TAVI">
+        <activity
+            android:name=".ChatUsersActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FriendActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ViewFriendActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ForgotPasswordActivity"
+            android:exported="false" />
         <activity
             android:name=".ChatActivity"
             android:exported="false" />
@@ -23,9 +35,6 @@
             android:exported="false" />
         <activity
             android:name=".SetupActivity"
-            android:exported="false" />
-        <activity
-            android:name=".MyPostsActivity"
             android:exported="false" />
         <activity
             android:name=".SplashActivity"
