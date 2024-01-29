@@ -33,7 +33,7 @@ public class ViewFriendActivity extends AppCompatActivity {
     String profileImageUrl,username, city, country, hobby;
     CircleImageView profileImage;
     TextView Username, address;
-    Button btnPerform, btnDecline;
+    Button btnPerform, btnDecline, returnBtnFriend;
     String CurrentState = "nothing_happen";
     String userID;
 
@@ -71,6 +71,17 @@ public class ViewFriendActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Unfriend(userID);
+            }
+        });
+
+        returnBtnFriend = findViewById(R.id.returnBtnFriend);
+
+        returnBtnFriend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ViewFriendActivity.this, FindFriendActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
     }

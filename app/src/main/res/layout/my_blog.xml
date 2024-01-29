@@ -17,6 +17,18 @@
             android:id="@+id/app_bar1"
             layout="@layout/main_appbar" />
 
+        <Button
+            android:id="@+id/returnBtnBlog"
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:text="ℂ𝕆𝔽ℕ𝕀𝕁"
+            android:textSize="8sp"
+            app:layout_constraintBottom_toBottomOf="@+id/app_bar1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.04"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/app_bar1" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerview1"
             android:layout_width="0dp"

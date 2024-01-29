@@ -10,8 +10,20 @@
         android:id="@+id/app_bar"
         layout="@layout/main_appbar"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"></include>
+
+    <Button
+        android:id="@+id/returnBtnFind"
+        android:layout_width="10dp"
+        android:layout_height="17dp"
+        android:layout_marginStart="8dp"
+        android:text="ℂ𝕆𝔽ℕ𝕀𝕁"
+        android:textSize="6sp"
+        app:layout_constraintBottom_toBottomOf="@+id/app_bar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"

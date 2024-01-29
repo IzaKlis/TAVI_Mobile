@@ -34,7 +34,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class FindFriendActivity extends AppCompatActivity {
     Toolbar toolbar;
-    Button returnBtn;
+    Button returnBtnFind;
     DatabaseReference mUsersRef;
     FirebaseAuth mAuth;
     FirebaseUser mUser;
@@ -51,10 +51,20 @@ public class FindFriendActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("ℤℕ\uD835\uDD38\uD835\uDD41\uD835\uDD3BŹ ℤℕ\uD835\uDD38\uD835\uDD41\uD835\uDD46\uD835\uDD44\uD835\uDD3C\uD835\uDD3E\uD835\uDD46");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.icons8_menu);
+
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        returnBtnFind = findViewById(R.id.returnBtnFind);
+
+        returnBtnFind.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(FindFriendActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
         
         mUsersRef = FirebaseDatabase.getInstance("https://tavi-8c1c2-default-rtdb.europe-west1.firebasedatabase.app/").getReference().child("Users");
         mAuth = FirebaseAuth.getInstance();

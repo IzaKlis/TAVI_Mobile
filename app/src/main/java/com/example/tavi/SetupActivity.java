@@ -35,7 +35,7 @@ public class SetupActivity extends AppCompatActivity {
     private static final int REQUEST_CODE = 101;
     CircleImageView profileImageView;
     EditText inputUsername, inputCity, inputCountry, inputHobby;
-    Button btnSave;
+    Button btnSave, returnBtnSetup;
     Uri imageUri;
     ProgressDialog mLoadingBar;
     FirebaseAuth mAuth;
@@ -54,6 +54,16 @@ public class SetupActivity extends AppCompatActivity {
         inputCountry = findViewById(R.id.inputCountry);
         inputHobby = findViewById(R.id.inputHobby);
         btnSave = findViewById(R.id.btnSave);
+        returnBtnSetup = findViewById(R.id.returnBtnSetup);
+
+        returnBtnSetup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SetupActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
