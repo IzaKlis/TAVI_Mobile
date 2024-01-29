@@ -29,6 +29,12 @@ import com.example.tavi.data.models.Post;
 import com.example.tavi.data.viewModels.PostViewModel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -96,6 +102,7 @@ public class MyPostsActivity extends AppCompatActivity {
         private final TextView postDesc;
         private final ImageView deletePostImage;
         private final ImageView editPostImage;
+        DatabaseReference mUserRef;
 
 
         public MyPostHolder(LayoutInflater inflater, ViewGroup parent) {
@@ -107,6 +114,7 @@ public class MyPostsActivity extends AppCompatActivity {
             postImage = itemView.findViewById(R.id.postImage);
             deletePostImage = itemView.findViewById(R.id.deletePostIcon);
             editPostImage = itemView.findViewById(R.id.editPostIcon);
+            mUserRef = FirebaseDatabase.getInstance("https://tavi-8c1c2-default-rtdb.europe-west1.firebasedatabase.app/").getReference().child("Users");
 
 
             deletePostImage.setOnClickListener(v -> {
@@ -156,7 +164,7 @@ public class MyPostsActivity extends AppCompatActivity {
 
         public void bind(Post post) {
             this.post = post;
-            profileUsername.setText(post.getUserId());
+            fetchUsernameAndPicture(post.getUserId());
             SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm", Locale.getDefault());
             timesAgo.setText(sdf.format(post.getDateCreated()));
             postDesc.setText(post.getContent());
@@ -172,6 +180,24 @@ public class MyPostsActivity extends AppCompatActivity {
             Glide.with(itemView.getContext())
                     .load(Uri.parse(imageUrl))
                     .into(imageView);
+        }
+        private void fetchUsernameAndPicture(String userId) {
+            mUserRef.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists()) {
+                        String username = dataSnapshot.child("username").getValue().toString();
+                        profileUsername.setText(username);
+                        String profileImageUrl = dataSnapshot.child("profileImage").getValue().toString();
+                        Picasso.get().load(profileImageUrl).into(profileImage);
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    profileUsername.setText("Użytkownik nieznany");
+                }
+            });
         }
     }
 

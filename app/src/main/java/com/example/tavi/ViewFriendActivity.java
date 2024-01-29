@@ -42,7 +42,6 @@ public class ViewFriendActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_friend);
         userID = getIntent().getStringExtra("userKey");
-        Toast.makeText(this, "Widok znajomego", Toast.LENGTH_SHORT).show();
 
         mUserRef = FirebaseDatabase.getInstance("https://tavi-8c1c2-default-rtdb.europe-west1.firebasedatabase.app/").getReference().child("Users").child(userID);
         requestRef = FirebaseDatabase.getInstance("https://tavi-8c1c2-default-rtdb.europe-west1.firebasedatabase.app/").getReference().child("Requests");

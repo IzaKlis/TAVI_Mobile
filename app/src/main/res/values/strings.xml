@@ -1,3 +1,32 @@
 <resources>
     <string name="app_name">TravelVista</string>
+    <string name="login_text">𝕃𝕆𝔾𝕆𝕎𝔸ℕ𝕀𝔼</string>
+    <string name="hint_email">𝔼-𝕄𝔸𝕀𝕃</string>
+    <string name="hint_password">ℍ𝔸𝕊Ł𝕆</string>
+    <string name="hint_confirm_password">ℙ𝕆𝕋𝕎𝕀𝔼ℝ𝔻Ź ℍ𝔸𝕊Ł𝕆</string>
+    <string name="forgot_password">ℕ𝕀𝔼 ℙ𝔸𝕄𝕀Ę𝕋𝔸𝕊ℤ ℍ𝔸𝕊Ł𝔸?</string>
+    <string name="btn_login">ℤ𝔸𝕃𝕆𝔾𝕌𝕁</string>
+    <string name="btn_register"> ℤ𝔸ℝ𝔼𝕁𝔼𝕊𝕋ℝ𝕌𝕁</string>
+    <string name="signup_question">ℕ𝕀𝔼 ℙ𝕆𝕊𝕀𝔸𝔻𝔸𝕊ℤ 𝕂𝕆ℕ𝕋𝔸?</string>
+    <string name="register_link"> ℤ𝔸ℝ𝔼𝕁𝔼𝕊𝕋ℝ𝕌𝕁 𝕊𝕀Ę</string>
+    <string name="btn_google">𝔾𝕆𝕆𝔾𝕃𝔼</string>
+    <string name="btn_facebook">𝔽𝔸ℂ𝔼𝔹𝕆𝕆𝕂</string>
+    <string name="hint_add_post">𝕋ℝ𝔼ŚĆ ℙ𝕆𝕊𝕋𝔸</string>
+    <string name="hint_message">𝕋ℝ𝔼ŚĆ 𝕎𝕀𝔸𝔻𝕆𝕄𝕆Śℂ𝕀</string>
+    <string name="hint_give_email">ℙ𝕆𝔻𝔸𝕁 𝔼-𝕄𝔸𝕀𝕃</string>
+    <string name="send">𝕎𝕐Ś𝕃𝕀𝕁</string>
+    <string name="register_text">ℝ𝔼𝕁𝔼𝕊𝕋ℝ𝔸ℂ𝕁𝔸</string>
+    <string name="login_link">ℙ𝕆𝕊𝕀𝔸𝔻𝔸𝕊ℤ 𝕂𝕆ℕ𝕋𝕆?</string>
+    <string name="name">𝕀𝕄𝕀Ę</string>
+    <string name="city">𝕄𝕀𝔸𝕊𝕋𝕆</string>
+    <string name="country">𝕂ℝ𝔸𝕁</string>
+    <string name="city_country">ℂ𝕀𝕋𝕐, ℂ𝕆𝕌ℕ𝕋ℝ𝕐</string>
+    <string name="save">ℤ𝔸ℙ𝕀𝕊ℤ</string>
+    <string name="invite">ℤ𝔸ℙℝ𝕆Ś</string>
+    <string name="desc">𝕆ℙ𝕀𝕊</string>
+    <string name="delete">𝕆𝔻ℝℤ𝕌Ć</string>
+    <string name="back">ℂ𝕆𝔽ℕ𝕀𝕁</string>
+    <string name="choose_picture">Wybierz zdjęcie</string>
+    <string name="message">Wiadomość</string>
+
 </resources>

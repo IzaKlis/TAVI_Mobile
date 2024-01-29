@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="16dp"
-            android:hint="𝕋ℝ𝔼ŚĆ 𝕎𝕀𝔸𝔻𝕆𝕄𝕆Śℂ𝕀"
+            android:hint="@string/hint_message"
             android:textColorHint="@color/colorBlack"
             app:layout_constraintEnd_toStartOf="@+id/btnSend"
             app:layout_constraintStart_toEndOf="@+id/imageView"></EditText>

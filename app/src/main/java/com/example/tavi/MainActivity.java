@@ -292,13 +292,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             commentCounter = itemView.findViewById(R.id.commentCounter);
             this.reactionViewModel = reactionViewModel;
             this.commentViewModel = commentViewModel;
-            likeImage.setOnClickListener(v -> handleLikeButtonClick());
-
         }
 
         public void bind(Post post) {
             this.post = post;
-            profileUsername.setText(post.getUserId());
+            fetchUsernameAndPicture(post.getUserId());
             SimpleDateFormat sdf = new SimpleDateFormat("DD-MM-YY HH:mm", Locale.getDefault());
             timesAgo.setText(sdf.format(post.getDateCreated()));
             postDesc.setText(post.getContent());
@@ -316,20 +314,31 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         break;
                     }
                 }
-                Log.d("MainActivity", "polubione");
-                Log.d("MainActivity", String.valueOf(reactionCount));
                 likesCounter.setText(String.valueOf(reactionCount));
                 likeImage.setColorFilter(isPostLiked ? Color.GREEN : Color.GRAY);
             });
-            commentViewModel.findAllByPostId(post.getId()).observe(MainActivity.this, comments -> {
-                int commentsCount = comments != null ? comments.size() : 0;
-                Log.d("MainActivity", "komentarze");
-                Log.d("MainActivity", String.valueOf(commentsCount));
-                commentCounter.setText(String.valueOf(commentsCount));
-            });
-
             likeImage.setOnClickListener(v -> handleLikeButtonClick());
 
+        }
+
+        private void fetchUsernameAndPicture(String userId) {
+            mUserRef.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists()) {
+                        String username = dataSnapshot.child("username").getValue().toString();
+                        profileUsername.setText(username);
+                        String profileImageUrl = dataSnapshot.child("profileImage").getValue().toString();
+                        usernameV = dataSnapshot.child("username").getValue().toString();
+                        Picasso.get().load(profileImageUrl).into(profileImage);
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    profileUsername.setText("Użytkownik nieznany");
+                }
+            });
         }
 
         private void handleLikeButtonClick() {

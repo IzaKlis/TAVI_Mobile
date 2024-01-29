@@ -86,17 +86,17 @@ public class ChatActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
 
-        LoadOtherUser();
-        LoadMyProfile();
 
-        btnSend.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SendSMS();
-            }
-        });
+        if (OtherUserID != null) {
+            LoadOtherUser();
+            LoadMyProfile();
 
-        LoadSMS();
+            btnSend.setOnClickListener(v -> SendSMS());
+
+            LoadSMS();
+        } else {
+            Toast.makeText(ChatActivity.this, "Nie masz żadnych konwersacji", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void LoadMyProfile() {

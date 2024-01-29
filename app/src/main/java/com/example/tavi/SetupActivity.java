@@ -14,14 +14,18 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.ktx.Firebase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -34,8 +38,8 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class SetupActivity extends AppCompatActivity {
     private static final int REQUEST_CODE = 101;
     CircleImageView profileImageView;
-    EditText inputUsername, inputCity, inputCountry, inputHobby;
-    Button btnSave;
+    EditText inputUsername, inputCity, inputCountry, inputAbout;
+    Button btnSave, btnBack;
     Uri imageUri;
     ProgressDialog mLoadingBar;
     FirebaseAuth mAuth;
@@ -48,20 +52,51 @@ public class SetupActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setup);
 
-        profileImageView = findViewById(R.id.profile_image);
-        inputUsername = findViewById(R.id.inputUsername);
-        inputCity = findViewById(R.id.inputCity);
-        inputCountry = findViewById(R.id.inputCountry);
-        inputHobby = findViewById(R.id.inputHobby);
-        btnSave = findViewById(R.id.btnSave);
-
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
         mRef = FirebaseDatabase.getInstance("https://tavi-8c1c2-default-rtdb.europe-west1.firebasedatabase.app/").getReference().child("Users");
         StorageRef = FirebaseStorage.getInstance().getReference().child("ProfileImages");
 
         mLoadingBar = new ProgressDialog(this);
+        profileImageView = findViewById(R.id.profile_image);
+        inputUsername = findViewById(R.id.inputUsername);
+        inputCity = findViewById(R.id.inputCity);
+        inputCountry = findViewById(R.id.inputCountry);
+        inputAbout = findViewById(R.id.inputHobby);
+        btnSave = findViewById(R.id.btnSave);
+        btnBack = findViewById(R.id.btnBack);
 
+        btnBack.setVisibility(View.GONE);
+
+        mRef.child(mUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    String username = dataSnapshot.child("username").getValue().toString();
+                    inputUsername.setText(username);
+
+                    String city = dataSnapshot.child("city").getValue().toString();
+                    inputCity.setText(city);
+
+                    String country = dataSnapshot.child("country").getValue().toString();
+                    inputCountry.setText(country);
+
+                    String about = dataSnapshot.child("hobby").getValue().toString();
+                    inputAbout.setText(about);
+
+                    String profileImageUri = dataSnapshot.child("profileImage").getValue().toString();
+                    Glide.with(SetupActivity.this).load(profileImageUri).into(profileImageView);
+
+                    btnSave.setText("Update Profile");
+                    btnBack.setVisibility(View.VISIBLE);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         profileImageView.setOnClickListener(v -> {
             Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
@@ -81,7 +116,7 @@ public class SetupActivity extends AppCompatActivity {
         String username = inputUsername.getText().toString();
         String city = inputCity.getText().toString();
         String country = inputCountry.getText().toString();
-        String hobby = inputHobby.getText().toString();
+        String about = inputAbout.getText().toString();
 
         if(username.isEmpty() || username.length()<3){
             showError(inputUsername,"Imię jest za krótkie");
@@ -95,18 +130,17 @@ public class SetupActivity extends AppCompatActivity {
             showError(inputCountry,"Nazwa kraju jest za krótka");
         }else if(!Character.isUpperCase(country.charAt(0))){
             showError(inputCountry,"Nazwa kraju musi zaczynać się z wielkiej litery");
-        }else if(hobby.isEmpty() || hobby.length()<3){
-            showError(inputHobby,"Zainteresowania są za krótkie");
+        }else if(about.isEmpty() || about.length()<3){
+            showError(inputAbout,"Zainteresowania są za krótkie");
         }else if(imageUri==null){
             Toast.makeText(this, "Proszę wybrać zdjęcie profilowe", Toast.LENGTH_SHORT).show();
-        }else{
+        } else{
             mLoadingBar.setTitle("Uzupełnianie profilu.");
             mLoadingBar.setCanceledOnTouchOutside(false);
             mLoadingBar.show();
             StorageRef.child(mUser.getUid()).putFile(imageUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-                    Log.d("TAG", "Zakończono przesyłanie pliku");
                     if(task.isSuccessful()){
                         StorageRef.child(mUser.getUid()).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                             @Override
@@ -115,7 +149,7 @@ public class SetupActivity extends AppCompatActivity {
                                 hashMap.put("username", username);
                                 hashMap.put("city", city);
                                 hashMap.put("country", country);
-                                hashMap.put("hobby", hobby);
+                                hashMap.put("hobby", about);
                                 hashMap.put("profileImage", uri.toString());
                                 hashMap.put("status", "offline");
 

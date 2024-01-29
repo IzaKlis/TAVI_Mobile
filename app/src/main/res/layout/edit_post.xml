@@ -9,7 +9,7 @@
         android:id="@+id/editTextContent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Treść posta"
+        android:hint="@string/hint_add_post"
         android:inputType="textMultiLine"
         android:minLines="3" />
 
@@ -19,6 +19,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="8dp"
-        android:text="Wybierz zdjęcie" />
+        android:text="@string/choose_picture" />
 
 </LinearLayout>
