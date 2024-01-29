@@ -12,18 +12,21 @@ import java.util.Date;
 public class Post {
     @PrimaryKey(autoGenerate = true)
     private int id;
-    @ColumnInfo(name = "title")
-    private String title;
     @ColumnInfo(name =  "content")
     private String content;
     @ColumnInfo(name = "date_created")
     private Date dateCreated;
     @ColumnInfo(name = "id_user")
-    private int userId;
+    private String userId;
+
+    @ColumnInfo(name = "post_picture")
+    private String picture;
+
+    @ColumnInfo(name = "likes_counter")
+    private int likesCounter;
 
 
     public Post() {
-
     }
 
     public int getId() {
@@ -32,14 +35,6 @@ public class Post {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
     }
 
     public String getContent() {
@@ -58,11 +53,27 @@ public class Post {
         this.dateCreated = dateCreated;
     }
 
-    public int getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
+    }
+
+    public int getLikesCounter() {
+        return likesCounter;
+    }
+
+    public void setLikesCounter(int likesCounter) {
+        this.likesCounter = likesCounter;
     }
 }
