@@ -7,7 +7,6 @@ import androidx.lifecycle.LiveData;
 import com.example.tavi.data.database.AppDatabase;
 import com.example.tavi.data.database.dao.CommentDao;
 import com.example.tavi.data.models.Comment;
-import com.example.tavi.data.models.Reaction;
 
 import java.util.List;
 
@@ -30,8 +29,5 @@ public class CommentRepository {
 
     public void deleteComment(Comment comment) {
         AppDatabase.databaseWriteExecutor.execute(() -> commentDao.delete(comment));
-    }
-    public LiveData<List<Comment>> findAllComments(int idPost) {
-        return commentDao.findAllByPostId(idPost);
     }
 }
