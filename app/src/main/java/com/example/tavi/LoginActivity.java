@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -34,7 +35,12 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(v -> checkLogin());
         createNewAccount.setOnClickListener(v -> startActivity(new Intent(LoginActivity.this, RegisterActivity.class)));
         forgotPassword = findViewById(R.id.forgotPassword);
-        forgotPassword.setOnClickListener(v -> startActivity(new Intent(LoginActivity.this, SetupActivity.class)));
+        forgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(LoginActivity.this, ForgotPasswordActivity.class));
+            }
+        });
 
     }
     private void checkLogin(){
@@ -55,14 +61,14 @@ public class LoginActivity extends AppCompatActivity {
             mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
                 if(task.isSuccessful()){
                     mLoadingBar.dismiss();
-                    Toast.makeText(LoginActivity.this, "Logowanie git.", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(LoginActivity.this, SetupActivity.class);
+                    Toast.makeText(LoginActivity.this, "Logowanie udane.", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
                     finish();
                 }else{
                     mLoadingBar.dismiss();
-                    Toast.makeText(LoginActivity.this,"Logowanie nie git.",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this,"Logowanie nieudane.",Toast.LENGTH_SHORT).show();
                 }
             });
 

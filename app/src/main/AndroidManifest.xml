@@ -13,6 +13,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TAVI">
         <activity
+            android:name=".ChatUsersActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FriendActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ViewFriendActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ForgotPasswordActivity"
+            android:exported="false" />
+        <activity
             android:name=".ChatActivity"
             android:exported="false" />
         <activity
