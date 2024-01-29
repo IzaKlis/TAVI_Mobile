@@ -1,0 +1,14 @@
+
+E
+java:S1604-"(Make this anonymous inner class a lambda(¡‡·¬8ï¯ÿ“Õ1
+c
+java:S1659"FDeclare "inputCity" and all following declarations on a separate line.(é‘ª¾8¤²ÿ“Õ1
+X
+java:S1874"6Remove this use of "ProgressDialog"; it is deprecated.(Äÿž¥ùÿÿÿÿ8Ç²ÿ“Õ1
+X
+java:S1874$"6Remove this use of "ProgressDialog"; it is deprecated.(Ö·ðÚüÿÿÿÿ8Í²ÿ“Õ1
+[
+java:S1874*">Remove this use of "startActivityForResult"; it is deprecated.(Œ­ýä8Ú²ÿ“Õ1
+o	java:S1005"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÚÔ©‚þÿÿÿÿ8Ü²ÿ“Õ1
+_
+java:S1874["JDon't override a deprecated method or explicitly mark it as "@Deprecated".(¹Î¾

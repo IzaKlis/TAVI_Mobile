@@ -1,0 +1,13 @@
+
+y
+java:S1450/"\Remove the "myPostAdapter" field and declare it as a local variable in the relevant methods.(Èûİë8”¾¯æÔ1
+f
+java:S1874P"JDon't override a deprecated method or explicitly mark it as "@Deprecated".(¹Î¾8­¾¯æÔ1
+a
+java:S1874">Remove this use of "startActivityForResult"; it is deprecated.(“Œñ¬ÿÿÿÿÿ8Œ§âæÔ1
+‚
+java:S1450µ"_Remove the "selectedImageUri" field and declare it as a local variable in the relevant methods.(† ŞÒúÿÿÿÿ8§âæÔ1
+M
+java:S1068]"0Remove this unused "profileImage" private field.(»á‰È8È¾¯æÔ1
+W
+java:S1068µ"4Remove this unused "selectedImageUri" private field.(† ŞÒúÿÿÿÿ8–§âæÔ1
