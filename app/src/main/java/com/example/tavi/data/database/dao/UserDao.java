@@ -28,3 +28,4 @@ public interface UserDao {
     @Query("SELECT * FROM users WHERE id = :userId LIMIT 1")
     LiveData<User> getUserById(int userId);
 }
+

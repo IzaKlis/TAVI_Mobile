@@ -1,10 +1,10 @@
 
 @
-app/build.gradle,f\4\f4a01d6a4fcb971362ec00a83903fd3902f52164
+app/build.gradle,f/4/f4a01d6a4fcb971362ec00a83903fd3902f52164
 q
-Aapp/src/main/java/com/example/tavi/data/database/AppDatabase.java,a\9\a9daee103a259afb661f81092ba1e5251f9a6408
+Aapp/src/main/java/com/example/tavi/data/database/AppDatabase.java,a/9/a9daee103a259afb661f81092ba1e5251f9a6408
 q
-Aapp/src/main/java/com/example/tavi/data/database/dao/UserDao.java,3\a\3a3b047b6b6e6ca7d8db31620bb0c0e74f0fce2c
+Aapp/src/main/java/com/example/tavi/data/database/dao/UserDao.java,3/a/3a3b047b6b6e6ca7d8db31620bb0c0e74f0fce2c
 q
 Aapp/src/main/java/com/example/tavi/data/database/dao/PostDao.java,4\4\4405127afe0845048738926decb18d02d751dc49
 t
@@ -30,7 +30,7 @@ i
 g
 7app/src/main/java/com/example/tavi/data/models/Tag.java,1\d\1d3a835a7f292fd7a586e0795be9335b1f09a328
 h
-8app/src/main/java/com/example/tavi/data/models/User.java,e\2\e2845eb27658b61b5d7770577e9e91b76cc57d99
+8app/src/main/java/com/example/tavi/data/models/User.java,e/2/e2845eb27658b61b5d7770577e9e91b76cc57d99
 x
 Happ/src/main/java/com/example/tavi/data/repositories/UserRepository.java,f\6\f60b6962800feb43e1451c4895bcd66a0051b106
 p
@@ -44,21 +44,21 @@ Iapp/src/main/java/com/example/tavi/data/database/dao/UserRelationDao.java,a\6\
 Ä
 Papp/src/main/java/com/example/tavi/data/repositories/UserRelationRepository.java,3\e\3e21407366ecafad76d12dd8495755c4033efe70
 P
- app/src/main/AndroidManifest.xml,8\c\8c55c3ccc257e5907959013f99656e4c8ec3903e
+ app/src/main/AndroidManifest.xml,8/c/8c55c3ccc257e5907959013f99656e4c8ec3903e
 e
-5app/src/main/java/com/example/tavi/LoginActivity.java,6\5\6576828142168bcbac23b596eec0374465555a0b
+5app/src/main/java/com/example/tavi/LoginActivity.java,6/5/6576828142168bcbac23b596eec0374465555a0b
 h
-8app/src/main/java/com/example/tavi/RegisterActivity.java,8\6\868e0d68a994a7656d7a6f25f03e7eaee4cf39c0
+8app/src/main/java/com/example/tavi/RegisterActivity.java,8/6/868e0d68a994a7656d7a6f25f03e7eaee4cf39c0
 d
-4app/src/main/java/com/example/tavi/MainActivity.java,0\5\058b54da4f8b48a8e9d40ae4bd236c63c1792205
+4app/src/main/java/com/example/tavi/MainActivity.java,0/5/058b54da4f8b48a8e9d40ae4bd236c63c1792205
 u
 Eapp/src/main/java/com/example/tavi/data/viewModels/UserViewModel.java,4\6\46990c1c2dd834a3d7e8a210830093e9c74e537e
 |
 Lapp/src/main/java/com/example/tavi/data/repositories/ReactionRepository.java,d\5\d5d07533acd7b553fa6ae20d35c2bff083f726a7
 y
-Iapp/src/main/java/com/example/tavi/data/viewModels/ReactionViewModel.java,a\b\ab1a5922110f6fd7e0a08a16bf08159f430a6e65
+Iapp/src/main/java/com/example/tavi/data/viewModels/ReactionViewModel.java,a/b/ab1a5922110f6fd7e0a08a16bf08159f430a6e65
 u
-Eapp/src/main/java/com/example/tavi/data/viewModels/PostViewModel.java,c\4\c413715079ed2446fe35333c0019f0b4c18c0a80
+Eapp/src/main/java/com/example/tavi/data/viewModels/PostViewModel.java,c/4/c413715079ed2446fe35333c0019f0b4c18c0a80
 }
 Mapp/src/main/java/com/example/tavi/data/viewModels/UserRelationViewModel.java,b\1\b148d52295b90ff52e24a702b9d3dc617eb2d1cd
 t
@@ -68,7 +68,7 @@ Kapp/src/main/java/com/example/tavi/data/repositories/CommentRepository.java,2\
 {
 Kapp/src/main/java/com/example/tavi/data/repositories/PictureRepository.java,3\0\30a3b2419e477e2d668777a28566a94342887169
 x
-Happ/src/main/java/com/example/tavi/data/viewModels/CommentViewModel.java,7\7\778402028426d78e43ba48bb1dd07446083e2ed0
+Happ/src/main/java/com/example/tavi/data/viewModels/CommentViewModel.java,7/7/778402028426d78e43ba48bb1dd07446083e2ed0
 x
 Happ/src/main/java/com/example/tavi/data/viewModels/PictureViewModel.java,6\a\6a5a8d520a679968d84e328ae6c072b6a8cc138a
 Å
@@ -169,3 +169,21 @@ Q.idea/sonarlint/securityhotspotstore/3/c/3c0878c6bd5797489bf077c829261966fdeaaa
 Q.idea/sonarlint/securityhotspotstore/a/d/addba2ba326c31fdc18c8767c25e45aa4c861aa2,4\0\40b4679f26716bd100a7cd7f065cec613e066635
 Å
 Q.idea/sonarlint/securityhotspotstore/3/e/3e21407366ecafad76d12dd8495755c4033efe70,b\5\b566960286680a5f89fbe2841e07836fe1a74676
+<
+build.gradle,f/0/f07866736216be0ee2aba49e392191aeae700a35
+e
+5app/src/main/java/com/example/tavi/SetupActivity.java,f/4/f4aafe8cd14b58babbd5da6de9f4e0dde6368638
+j
+:app/src/main/java/com/example/tavi/FindFriendActivity.java,b/7/b7f1afba95eeb4042045bfadad226bdbd75b447b
+d
+4app/src/main/java/com/example/tavi/ChatActivity.java,2/f/2f243cf13b251528e0046c72de8ea33384c00f3c
+d
+4app/src/main/java/com/example/tavi/Utills/Users.java,8/6/864e1f1bea64e983b4e9d815b015b575d69e038e
+n
+>app/src/main/java/com/example/tavi/ForgotPasswordActivity.java,d/d/dd540274b7624f3804587aaf4b7755d4c7c5363d
+j
+:app/src/main/java/com/example/tavi/ViewFriendActivity.java,8/e/8e69e16c8c15cfa25f459594e89eef85032949a4
+f
+6app/src/main/java/com/example/tavi/SplashActivity.java,0/f/0fe87620dca1a8e32c44cf5b6bba44d59e73a00f
+f
+6app/src/main/java/com/example/tavi/FriendActivity.java,8/4/84c95ba2284e89878ba30fae1d9ad5e873e23f9a

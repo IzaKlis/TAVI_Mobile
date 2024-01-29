@@ -1,4 +1,23 @@
 
-J
-java:S1185
-"(Remove this method to simply inherit it.(¨Œşÿÿÿÿ8«ù€èÒ1
+E
+java:S1604j"(Make this anonymous inner class a lambda(Ï›ø÷8ùŒ”Õ1
+\
+java:S3516ç"9Refactor this method to not always return the same value.(èëÔíÿÿÿÿÿ8¼úŒ”Õ1
+
+java:S1186E"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(—¦‹ã8ÓúŒ”Õ1
+D
+java:S1659:"'Declare "usernameV" on a separate line.(¯õÔ·8ÛúŒ”Õ1
+M
+java:S1659="+Declare "sendImagePost" on a separate line.(ñä·éüÿÿÿÿ8ÛúŒ”Õ1
+X
+java:S1874@"6Remove this use of "ProgressDialog"; it is deprecated.(Äÿ¥ùÿÿÿÿ8’ûŒ”Õ1
+X
+java:S1874^"6Remove this use of "ProgressDialog"; it is deprecated.(Ö·ğÚüÿÿÿÿ8®üŒ”Õ1
+[
+java:S1874o">Remove this use of "startActivityForResult"; it is deprecated.(Œ­ıä8½üŒ”Õ1
+f
+java:S1874~"JDon't override a deprecated method or explicitly mark it as "@Deprecated".(¹Î¾8ÂüŒ”Õ1
+k	java:S100†"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÿÖ‡8ÄüŒ”Õ1
+p	java:S100¸"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(À¥°üÿÿÿÿ8×üŒ”Õ1
+N
+java:S1068ó"0Remove this unused "profileImage" private field.(»á‰È8şüŒ”Õ1

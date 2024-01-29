@@ -1,9 +1,15 @@
 
 J
-java:S1185"(Remove this method to simply inherit it.(¨Œşÿÿÿÿ8õÑ€èÒ1
+java:S1604/"(Make this anonymous inner class a lambda(ë‡½Ÿûÿÿÿÿ8ºÇ©”Õ1
+E
+java:S16046"(Make this anonymous inner class a lambda(¥ĞãÅ8¼Ç©”Õ1
+J
+java:S1604P"(Make this anonymous inner class a lambda(‚´´¢ùÿÿÿÿ8½Ç©”Õ1
+i
+java:S1659"GDeclare "inputEmail" and all following declarations on a separate line.(¬àíòøÿÿÿÿ8‹É©”Õ1
+X
+java:S1874"6Remove this use of "ProgressDialog"; it is deprecated.(Äÿ¥ùÿÿÿÿ8—É©”Õ1
+X
+java:S1874,"6Remove this use of "ProgressDialog"; it is deprecated.(Ö·ğÚüÿÿÿÿ8¥É©”Õ1
 O
-java:S1128"3Remove this unused import 'android.content.Intent'.(³ğ‹G8øÑ€èÒ1
-P
-java:S1128".Remove this unused import 'android.view.View'.(Ø½­äşÿÿÿÿ8øÑ€èÒ1
-V
-java:S1128"4Remove this unused import 'android.widget.TextView'.(„Ë‚ˆÿÿÿÿÿ8úÑ€èÒ1
+java:S1874M"2Remove this use of "setMessage"; it is deprecated.(û¹º†8¸É©”Õ1
