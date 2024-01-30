@@ -56,7 +56,7 @@ public class SetupActivity extends AppCompatActivity {
         inputUsername = findViewById(R.id.inputUsername);
         inputCity = findViewById(R.id.inputCity);
         inputCountry = findViewById(R.id.inputCountry);
-        inputHobby = findViewById(R.id.inputHobby);
+        inputAbout = findViewById(R.id.inputHobby);
         btnSave = findViewById(R.id.btnSave);
 
         mAuth = FirebaseAuth.getInstance();
@@ -71,9 +71,9 @@ public class SetupActivity extends AppCompatActivity {
         inputCountry = findViewById(R.id.inputCountry);
         inputAbout = findViewById(R.id.inputHobby);
         btnSave = findViewById(R.id.btnSave);
-        btnBack = findViewById(R.id.btnBack);
+        returnBtnSetup= findViewById(R.id.btnBack);
 
-        btnBack.setVisibility(View.GONE);
+        returnBtnSetup.setVisibility(View.GONE);
 
         mRef.child(mUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -94,8 +94,8 @@ public class SetupActivity extends AppCompatActivity {
                     String profileImageUri = dataSnapshot.child("profileImage").getValue().toString();
                     Glide.with(SetupActivity.this).load(profileImageUri).into(profileImageView);
 
-                    btnSave.setText("Update Profile");
-                    btnBack.setVisibility(View.VISIBLE);
+                    btnSave.setText("Zapisz profil");
+                    returnBtnSetup.setVisibility(View.VISIBLE);
                 }
             }
 

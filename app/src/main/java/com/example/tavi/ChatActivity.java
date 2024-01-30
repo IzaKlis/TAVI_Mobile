@@ -87,16 +87,14 @@ public class ChatActivity extends AppCompatActivity {
         mUser = mAuth.getCurrentUser();
 
 
-        if (OtherUserID != null) {
+
             LoadOtherUser();
             LoadMyProfile();
 
             btnSend.setOnClickListener(v -> SendSMS());
 
             LoadSMS();
-        } else {
-            Toast.makeText(ChatActivity.this, "Nie masz żadnych konwersacji", Toast.LENGTH_SHORT).show();
-        }
+
     }
 
     private void LoadMyProfile() {
@@ -165,7 +163,7 @@ public class ChatActivity extends AppCompatActivity {
             hashMap.put("status", "unseen");
             hashMap.put("userID", mUser.getUid());
 
-            smsRef.child(OtherUsername).child(mUser.getUid()).push().updateChildren(hashMap).addOnCompleteListener(new OnCompleteListener() {
+            smsRef.child(OtherUserID).child(mUser.getUid()).push().updateChildren(hashMap).addOnCompleteListener(new OnCompleteListener() {
                 @Override
                 public void onComplete(@NonNull Task task) {
                     if(task.isSuccessful()){

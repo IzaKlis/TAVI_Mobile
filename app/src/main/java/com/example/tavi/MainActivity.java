@@ -245,6 +245,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             startActivity(intent);
             finish();
         } else if (itemId == R.id.logout) {
+            mAuth.signOut();
             Toast.makeText(this, "Wyloguj się", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(intent);

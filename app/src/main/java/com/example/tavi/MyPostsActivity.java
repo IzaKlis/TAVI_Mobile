@@ -185,8 +185,6 @@ public class MyPostsActivity extends AppCompatActivity {
             if (post.getPicture() != null && !post.getPicture().isEmpty()) {
                 loadImage(post.getPicture(), postImage);
                 postImage.setVisibility(View.VISIBLE);
-            } else {
-                postImage.setVisibility(View.GONE);
             }
         }
 
