@@ -26,6 +26,17 @@
             android:layout_height="match_parent"
             android:background="@drawable/travel">
 
+            <Button
+                android:id="@+id/returnBtnFriend"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="32dp"
+                android:text="ℂ𝕆𝔽ℕ𝕀𝕁"
+                android:textSize="8sp"
+                app:layout_constraintEnd_toEndOf="@+id/btnDecline"
+                app:layout_constraintStart_toStartOf="@+id/btnDecline"
+                app:layout_constraintTop_toBottomOf="@+id/btnDecline" />
+
             <View
                 android:id="@+id/view"
                 android:layout_width="match_parent"

@@ -1,9 +1,10 @@
 
-C
-java:S1604"(Make this anonymous inner class a lambda(ó“ä»ÿÿÿÿÿ
-Q	java:S125("<This block of commented-out lines of code should be removed.(ÕÎíş
-c	java:S100+"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¼ğïŞ
->
-java:S1172+"(Remove this unused method parameter "s".(¼ğïŞ
-D
-java:S1144+".Remove this unused private "LoadUsers" method.(¼ğïŞ
+E
+java:S1604<"(Make this anonymous inner class a lambda(ÛŞØÛ8’ùˆªÕ1
+E
+java:S1604Z"(Make this anonymous inner class a lambda(Ö¹™º8±¨Ù¶Õ1
+j	java:S100K"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¼ğïŞ8ÔùˆªÕ1
+b
+java:S1858Q"@"getKey" returns a string, there's no need to call "toString()".(¸ˆÏıøÿÿÿÿ8ÚùˆªÕ1
+b
+java:S1858^"@"getKey" returns a string, there's no need to call "toString()".(Ğ–öÔüÿÿÿÿ8àùˆªÕ1

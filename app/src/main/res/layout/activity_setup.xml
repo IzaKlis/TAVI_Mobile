@@ -26,6 +26,17 @@
             android:layout_height="match_parent"
             android:background="@color/colorWhite">
 
+            <Button
+                android:id="@+id/returnBtnSetup"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="24dp"
+                android:text="ℂ𝕆𝔽ℕ𝕀𝕁"
+                android:textSize="8sp"
+                app:layout_constraintEnd_toEndOf="@+id/btnSave"
+                app:layout_constraintStart_toStartOf="@+id/btnSave"
+                app:layout_constraintTop_toBottomOf="@+id/btnSave" />
+
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/profile_image"
                 android:layout_width="140dp"

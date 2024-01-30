@@ -39,7 +39,7 @@ public class SetupActivity extends AppCompatActivity {
     private static final int REQUEST_CODE = 101;
     CircleImageView profileImageView;
     EditText inputUsername, inputCity, inputCountry, inputAbout;
-    Button btnSave, btnBack;
+    Button btnSave, returnBtnSetup;
     Uri imageUri;
     ProgressDialog mLoadingBar;
     FirebaseAuth mAuth;
@@ -51,6 +51,13 @@ public class SetupActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setup);
+
+        profileImageView = findViewById(R.id.profile_image);
+        inputUsername = findViewById(R.id.inputUsername);
+        inputCity = findViewById(R.id.inputCity);
+        inputCountry = findViewById(R.id.inputCountry);
+        inputHobby = findViewById(R.id.inputHobby);
+        btnSave = findViewById(R.id.btnSave);
 
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
@@ -98,6 +105,16 @@ public class SetupActivity extends AppCompatActivity {
             }
         });
 
+        returnBtnSetup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SetupActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+
         profileImageView.setOnClickListener(v -> {
             Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
             intent.setType("image/*");
@@ -141,6 +158,7 @@ public class SetupActivity extends AppCompatActivity {
             StorageRef.child(mUser.getUid()).putFile(imageUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                    Log.d("TAG", "Zakończono przesyłanie pliku");
                     if(task.isSuccessful()){
                         StorageRef.child(mUser.getUid()).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                             @Override

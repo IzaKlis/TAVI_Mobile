@@ -53,6 +53,8 @@ public class MyPostsActivity extends AppCompatActivity {
     private MyPostAdapter myPostAdapter;
     private static final int PICK_IMAGE_REQUEST = 1;
 
+    Button returnBtnBlog;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +82,18 @@ public class MyPostsActivity extends AppCompatActivity {
                 Log.d("MyPostsActivity", "Posts list is null");
             }
         });
+
+        returnBtnBlog = findViewById(R.id.returnBtnBlog);
+
+        returnBtnBlog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MyPostsActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
     }
 
     @Override
