@@ -1,14 +1,35 @@
 
+L
+java:S3740|"/Provide the parametrized type for this generic.(‹Ž¤·8ØÈË²Õ1
+L
+java:S3740|"/Provide the parametrized type for this generic.(‹Ž¤·8ÙÈË²Õ1
+M
+java:S3740„"/Provide the parametrized type for this generic.(„¬ÍË8ÙÈË²Õ1
+J
+java:S1604;"(Make this anonymous inner class a lambda(ÊÜâ¤üÿÿÿÿ8ï¯ÿ“Õ1
 E
-java:S1604-"(Make this anonymous inner class a lambda(¡‡·¬8ï¯ÿ“Õ1
+java:S1604R"(Make this anonymous inner class a lambda(¡‡·¬8ƒ‹çµÕ1
+F
+java:S1604„"(Make this anonymous inner class a lambda(„¬ÍË8ÜÈË²Õ1
+K
+java:S1604Œ"(Make this anonymous inner class a lambda(œÁÈÌþÿÿÿÿ8ÜÈË²Õ1
+J
+java:S1604y"(Make this anonymous inner class a lambda(Á±ºîþÿÿÿÿ8ÜÈË²Õ1
+E
+java:S1604t"(Make this anonymous inner class a lambda(ÍìîÅ8ÝÈË²Õ1
+v	java:S116,"URename this field "StorageRef" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÚÝ·™ùÿÿÿÿ8ŒÊË²Õ1
 c
-java:S1659"FDeclare "inputCity" and all following declarations on a separate line.(é‘ª¾8¤²ÿ“Õ1
+java:S1659%"FDeclare "inputCity" and all following declarations on a separate line.(é‘ª¾8¤²ÿ“Õ1
+I
+java:S1659&",Declare "returnBtnSetup" on a separate line.(åƒæó8æêµÕ1
 X
-java:S1874"6Remove this use of "ProgressDialog"; it is deprecated.(Äÿž¥ùÿÿÿÿ8Ç²ÿ“Õ1
+java:S1874("6Remove this use of "ProgressDialog"; it is deprecated.(Äÿž¥ùÿÿÿÿ8Ç²ÿ“Õ1
 X
-java:S1874$"6Remove this use of "ProgressDialog"; it is deprecated.(Ö·ðÚüÿÿÿÿ8Í²ÿ“Õ1
+java:S1874I"6Remove this use of "ProgressDialog"; it is deprecated.(Ö·ðÚüÿÿÿÿ8Í²ÿ“Õ1
 [
-java:S1874*">Remove this use of "startActivityForResult"; it is deprecated.(Œ­ýä8Ú²ÿ“Õ1
-o	java:S1005"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÚÔ©‚þÿÿÿÿ8Ü²ÿ“Õ1
-_
-java:S1874["JDon't override a deprecated method or explicitly mark it as "@Deprecated".(¹Î¾
+java:S1874O">Remove this use of "startActivityForResult"; it is deprecated.(Œ­ýä8Ú²ÿ“Õ1
+o	java:S100Z"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÚÔ©‚þÿÿÿÿ8Ü²ÿ“Õ1
+t
+java:S3776Z"RRefactor this method to reduce its Cognitive Complexity from 17 to the 15 allowed.(ÚÔ©‚þÿÿÿÿ8šÌË²Õ1
+`
+java:S1874£"JDon't override a deprecated method or explicitly mark it as "@Deprecated".(¹Î¾

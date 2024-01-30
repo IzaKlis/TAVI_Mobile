@@ -1,5 +1,27 @@
 
+p
+java:S1192ƒ"MDefine a constant instead of duplicating this literal "MainActivity" 6 times.(ÑÄÔÖÿÿÿÿÿ8¡–Ñ¬Õ1
+E
+java:S1604v"(Make this anonymous inner class a lambda(Ï›ø÷8£–Ñ¬Õ1
+¨
+java:S1862í"„This branch can not be reached because the condition duplicates a previous condition in the same sequence of "if/else if" statements(àÒ¥§ÿÿÿÿÿ8¦–Ñ¬Õ1
+\
+java:S3516"9Refactor this method to not always return the same value.(èëÔíÿÿÿÿÿ8Æ–Ñ¬Õ1
 M
-java:S1659;"+Declare "sendImagePost" on a separate line.(ñä·éüÿÿÿÿ8ĞË„”Õ1
+java:S1659@"+Declare "sendImagePost" on a separate line.(ñä·éüÿÿÿÿ8Î–Ñ¬Õ1
+D
+java:S1659K"'Declare "usernameV" on a separate line.(¯õÔ·8Î–Ñ¬Õ1
 X
-java:S1874>"6Remove this use of "ProgressDialog"; it is deprecated.(Äÿ¥ùÿÿÿÿ8áË„”Õ1
+java:S1874C"6Remove this use of "ProgressDialog"; it is deprecated.(Äÿ¥ùÿÿÿÿ8Ñ–Ñ¬Õ1
+X
+java:S1874k"6Remove this use of "ProgressDialog"; it is deprecated.(Ö·ğÚüÿÿÿÿ8Ú–Ñ¬Õ1
+[
+java:S1874{">Remove this use of "startActivityForResult"; it is deprecated.(Œ­ıä8ß–Ñ¬Õ1
+g
+java:S1874"JDon't override a deprecated method or explicitly mark it as "@Deprecated".(¹Î¾8á–Ñ¬Õ1
+k	java:S100–"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÿÖ‡8â–Ñ¬Õ1
+p	java:S100Ï"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(À¥°üÿÿÿÿ8ê–Ñ¬Õ1
+N
+java:S1068"0Remove this unused "profileImage" private field.(»á‰È8ı–Ñ¬Õ1
+N
+java:S1068•"0Remove this unused "commentImage" private field.(¶ÿ¡É8ı–Ñ¬Õ1
